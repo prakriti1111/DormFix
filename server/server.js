@@ -2,7 +2,7 @@ require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const path = require("path");
-// const connectDB = require("./config/db");
+const connectDB = require("./config/db");
 // const { notFound, errorHandler } = require("./middleware/errorHandler");
 
 // const authRoutes = require("./routes/authRoutes");
@@ -10,7 +10,7 @@ const path = require("path");
 // const feedbackRoutes = require("./routes/feedbackRoutes");
 // const dashboardRoutes = require("./routes/dashboardRoutes");
 
-// connectDB();
+connectDB();
 
 const app = express();
 
