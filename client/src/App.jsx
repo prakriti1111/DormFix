@@ -9,8 +9,8 @@ import Register from "./pages/Register";
 import ResidentDashboard from "./pages/ResidentDashboard";
 import NewComplaint from "./pages/NewComplaint";
 import ComplaintDetails from "./pages/ComplaintDetails";
-import WardenDashboard from "./pages/WardenDashboard";
-import WardenComplaintDetails from "./pages/WardenComplaintDetails";
+// import WardenDashboard from "./pages/WardenDashboard";
+// import WardenComplaintDetails from "./pages/WardenComplaintDetails";
 
 const HomeRedirect = () => {
   const { user, loading } = useAuth();
@@ -54,6 +54,7 @@ const AppRoutes = () => (
         }
       />
 
+      {/* Warden routes will be re-enabled once WardenDashboard / WardenComplaintDetails are built
       <Route
         path="/warden/dashboard"
         element={
@@ -70,6 +71,7 @@ const AppRoutes = () => (
           </ProtectedRoute>
         }
       />
+      */}
 
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
