@@ -6,7 +6,7 @@ const connectDB = require("./config/db");
 const { notFound, errorHandler } = require("./middleware/errorHandler");
 
 const authRoutes = require("./routes/authRoutes");
-// const complaintRoutes = require("./routes/complaintRoutes");
+const complaintRoutes = require("./routes/complaintRoutes");
 // const feedbackRoutes = require("./routes/feedbackRoutes");
 // const dashboardRoutes = require("./routes/dashboardRoutes");
 
@@ -36,9 +36,9 @@ app.get("/api/health", (req, res) => {
 });
 
 app.use("/api/auth", authRoutes);
-// app.use("/api/complaints", complaintRoutes);
+app.use("/api/complaints", complaintRoutes);
 // app.use("/api/complaints/:id/feedback", feedbackRoutes);
-// app.use("/api/dashboard", dashboardRoutes);
+//app.use("/api/dashboard", dashboardRoutes);
 
 app.use(notFound);
 app.use(errorHandler);
