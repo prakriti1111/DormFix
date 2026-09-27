@@ -10,6 +10,7 @@ const userSchema = new mongoose.Schema(
       minlength: 2,
       maxlength: 100,
     },
+
     email: {
       type: String,
       required: [true, "Email is required"],
@@ -18,25 +19,29 @@ const userSchema = new mongoose.Schema(
       lowercase: true,
       match: [/^[^\s@]+@[^\s@]+\.[^\s@]+$/, "Invalid email format"],
     },
+
     password: {
       type: String,
       required: [true, "Password is required"],
       minlength: 6,
       select: false,
     },
+
     role: {
       type: String,
       enum: ["resident", "warden"],
       default: "resident",
       required: true,
     },
-    // Resident-only fields (not required for warden)
+
+    // Resident-only fields
     registrationNumber: {
       type: String,
       unique: true,
-      sparse: true, // allows warden docs without this field
+      sparse: true,
       trim: true,
     },
+
     roomNumber: {
       type: String,
       trim: true,
@@ -45,15 +50,12 @@ const userSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-userSchema.index({ email: 1 });
-userSchema.index({ registrationNumber: 1 });
-
 // Hash password before saving
-userSchema.pre("save", async function (next) {
-  if (!this.isModified("password")) return next();
+userSchema.pre("save", async function () {
+  if (!this.isModified("password")) return;
+
   const salt = await bcrypt.genSalt(10);
   this.password = await bcrypt.hash(this.password, salt);
-  next();
 });
 
 userSchema.methods.comparePassword = async function (candidatePassword) {
