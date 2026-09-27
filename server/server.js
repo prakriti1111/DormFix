@@ -22,11 +22,14 @@ app.use(
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+app.use(
+  "/uploads",
+  express.static(path.join(__dirname, process.env.UPLOAD_DIR || "uploads"))
+);
 
-// app.use(
-//   "/uploads",
-//   express.static(path.join(__dirname, process.env.UPLOAD_DIR || "uploads"))
-// );
+app.get("/api/health", (req, res) => {
+  res.json({ success: true, message: "HostelFix API is running." });
+});
 
 app.get("/api/health", (req, res) => {
   res.json({ success: true, message: "HostelFix API is running." });
