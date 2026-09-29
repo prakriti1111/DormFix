@@ -1,10 +1,3 @@
-/**
- * Seed script — creates a demo warden, demo residents, and sample
- * complaints in various statuses. Run with: npm run seed
- *
- * This is the documented, controlled way to create the initial
- * warden account (wardens are never created via public registration).
- */
 require("dotenv").config();
 const mongoose = require("mongoose");
 const connectDB = require("../config/db");
