@@ -1,17 +1,56 @@
-// A complaint is considered overdue if it hasn't been resolved within this window.
-const OVERDUE_THRESHOLD_HOURS = 48;
+const OVERDUE_THRESHOLD_MS = 48 * 60 * 60 * 1000; // 48 hours
 
-const isOverdue = (complaint) => {
-  if (!complaint || complaint.status === "RESOLVED") return false;
-  const hoursSinceCreated =
-    (Date.now() - new Date(complaint.createdAt).getTime()) / (1000 * 60 * 60);
-  return hoursSinceCreated > OVERDUE_THRESHOLD_HOURS;
+/**
+ * Computes whether a complaint should be flagged overdue.
+ * Resolved complaints are never overdue. Calculation is based on
+ * server timestamps only — never trusts a frontend-supplied value.
+ */
+const computeIsOverdue = (complaint) => {
+  if (complaint.status === "RESOLVED") return false;
+  const age = Date.now() - new Date(complaint.createdAt).getTime();
+  return age > OVERDUE_THRESHOLD_MS;
 };
 
-// Attaches a fresh (always up-to-date) isOverdue flag to a Mongoose doc or plain object.
-const withOverdueFlag = (doc) => {
-  const obj = doc.toObject ? doc.toObject() : doc;
-  return { ...obj, isOverdue: isOverdue(obj) };
+/**
+ * Recalculates and persists isOverdue for a single complaint document
+ * if it has changed. Returns the (possibly updated) document.
+ */
+const refreshOverdueStatus = async (complaintDoc) => {
+  const shouldBeOverdue = computeIsOverdue(complaintDoc);
+  if (complaintDoc.isOverdue !== shouldBeOverdue) {
+    complaintDoc.isOverdue = shouldBeOverdue;
+    await complaintDoc.save();
+  }
+  return complaintDoc;
 };
 
-module.exports = { isOverdue, withOverdueFlag, OVERDUE_THRESHOLD_HOURS };
+/**
+ * Bulk refresh for a list of complaint documents (e.g. before listing).
+ */
+const refreshOverdueForList = async (complaints) => {
+  const bulkOps = [];
+  for (const c of complaints) {
+    const shouldBeOverdue = computeIsOverdue(c);
+    if (c.isOverdue !== shouldBeOverdue) {
+      c.isOverdue = shouldBeOverdue;
+      bulkOps.push({
+        updateOne: {
+          filter: { _id: c._id },
+          update: { $set: { isOverdue: shouldBeOverdue } },
+        },
+      });
+    }
+  }
+  if (bulkOps.length > 0) {
+    const Complaint = require("../models/Complaint");
+    await Complaint.bulkWrite(bulkOps);
+  }
+  return complaints;
+};
+
+module.exports = {
+  OVERDUE_THRESHOLD_MS,
+  computeIsOverdue,
+  refreshOverdueStatus,
+  refreshOverdueForList,
+};

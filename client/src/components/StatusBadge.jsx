@@ -4,23 +4,10 @@ const STATUS_LABELS = {
   RESOLVED: "Resolved",
 };
 
-const STATUS_CLASSES = {
-  SUBMITTED: "status-badge status-submitted",
-  UNDER_PROGRESS: "status-badge status-progress",
-  RESOLVED: "status-badge status-resolved",
-};
-
-const StatusBadge = ({ status, isOverdue }) => {
-  return (
-    <span className="status-badge-wrapper">
-      <span className={STATUS_CLASSES[status] || "status-badge"}>
-        {STATUS_LABELS[status] || status}
-      </span>
-      {isOverdue && status !== "RESOLVED" && (
-        <span className="status-badge status-overdue">Overdue</span>
-      )}
-    </span>
-  );
-};
+const StatusBadge = ({ status }) => (
+  <span className={`status-badge status-${status}`}>
+    {STATUS_LABELS[status] || status}
+  </span>
+);
 
 export default StatusBadge;

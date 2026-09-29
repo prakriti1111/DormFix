@@ -1,3 +1,5 @@
+// Consistent success/error response shape across all endpoints
+
 const success = (res, statusCode, message, data = null) => {
   return res.status(statusCode).json({
     success: true,

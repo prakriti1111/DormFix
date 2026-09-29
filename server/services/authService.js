@@ -30,7 +30,7 @@ const registerResident = async ({
     roomNumber,
     email: email.toLowerCase(),
     password,
-    role: "resident", 
+    role: "resident", // always forced server-side; never trust client input
   });
 
   return user;

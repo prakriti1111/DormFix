@@ -1,10 +1,8 @@
-const StatisticsCard = ({ label, value, variant = "default" }) => {
-  return (
-    <div className={`stat-card stat-card-${variant} card`}>
-      <span className="stat-value">{value}</span>
-      <span className="stat-label">{label}</span>
-    </div>
-  );
-};
+const StatisticsCard = ({ label, value, overdue }) => (
+  <div className={`stat-card ${overdue ? "overdue" : ""}`}>
+    <div className="stat-value">{value}</div>
+    <div className="stat-label">{label}</div>
+  </div>
+);
 
 export default StatisticsCard;

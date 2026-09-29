@@ -1,6 +1,10 @@
 import { Navigate } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 
+/**
+ * Guards a route behind authentication and, optionally, a specific role.
+ * Usage: <ProtectedRoute allowedRole="warden"><WardenDashboard /></ProtectedRoute>
+ */
 const ProtectedRoute = ({ children, allowedRole }) => {
   const { user, loading } = useAuth();
 

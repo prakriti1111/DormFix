@@ -4,6 +4,7 @@ const api = axios.create({
   baseURL: import.meta.env.VITE_API_BASE_URL || "http://localhost:5000/api",
 });
 
+// Attach the JWT (if present) to every outgoing request
 api.interceptors.request.use((config) => {
   const token = localStorage.getItem("hostelfix_token");
   if (token) {
@@ -12,6 +13,7 @@ api.interceptors.request.use((config) => {
   return config;
 });
 
+// Centralized handling of 401s — clear stale token and redirect to login
 api.interceptors.response.use(
   (response) => response,
   (error) => {
