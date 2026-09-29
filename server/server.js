@@ -28,11 +28,11 @@ app.use(
 );
 
 app.get("/api/health", (req, res) => {
-  res.json({ success: true, message: "HostelFix API is running." });
+  res.json({ success: true, message: "dormfix API is running." });
 });
 
 app.get("/api/health", (req, res) => {
-  res.json({ success: true, message: "HostelFix API is running." });
+  res.json({ success: true, message: "dormfix API is running." });
 });
 
 app.use("/api/auth", authRoutes);
@@ -45,7 +45,7 @@ app.use(errorHandler);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
-  console.log(`HostelFix server running on port ${PORT}`);
+  console.log(`dormfix server running on port ${PORT}`);
 });
 
 module.exports = app;

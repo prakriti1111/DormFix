@@ -12,7 +12,7 @@ const Navbar = () => {
 
   return (
     <nav className="navbar">
-      <span className="brand">HostelFix</span>
+      <span className="brand">dormfix</span>
       {user && (
         <div className="nav-right">
           <span>
