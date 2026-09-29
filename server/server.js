@@ -31,10 +31,14 @@ app.get("/api/health", (req, res) => {
   res.json({ success: true, message: "HostelFix API is running." });
 });
 
+app.get("/api/health", (req, res) => {
+  res.json({ success: true, message: "HostelFix API is running." });
+});
+
 app.use("/api/auth", authRoutes);
 app.use("/api/complaints", complaintRoutes);
 // app.use("/api/complaints/:id/feedback", feedbackRoutes);
-// app.use("/api/dashboard", dashboardRoutes);
+//app.use("/api/dashboard", dashboardRoutes);
 
 app.use(notFound);
 app.use(errorHandler);
