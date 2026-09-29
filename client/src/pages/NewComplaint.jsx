@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import ComplaintForm from "../components/ComplaintForm";
 import { createComplaint } from "../api/complaintApi";
+import ComplaintForm from "../components/ComplaintForm";
 
 const NewComplaint = () => {
   const navigate = useNavigate();
@@ -24,11 +24,8 @@ const NewComplaint = () => {
 
   return (
     <div className="page-container">
-      <div className="form-box card">
-        <h2>Raise a New Complaint</h2>
-        {error && <div className="alert alert-error">{error}</div>}
-        <ComplaintForm onSubmit={handleSubmit} submitting={submitting} />
-      </div>
+      <h2>Submit a New Complaint</h2>
+      <ComplaintForm onSubmit={handleSubmit} submitting={submitting} error={error} />
     </div>
   );
 };

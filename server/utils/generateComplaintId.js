@@ -1,18 +1,17 @@
 const Counter = require("../models/Counter");
 
-// Generates IDs like CMP-2026-0001, resetting the sequence every year.
+/**
+ * Atomically increments the "complaintId" counter and returns a
+ * formatted ID like HF-0001, HF-0002, ... Using findOneAndUpdate with
+ * upsert avoids race conditions under concurrent requests.
+ */
 const generateComplaintId = async () => {
-  const year = new Date().getFullYear();
-  const counterId = `complaint_${year}`;
-
-  const counter = await Counter.findByIdAndUpdate(
-    counterId,
+  const counter = await Counter.findOneAndUpdate(
+    { _id: "complaintId" },
     { $inc: { seq: 1 } },
     { new: true, upsert: true }
   );
-
-  const padded = String(counter.seq).padStart(4, "0");
-  return `CMP-${year}-${padded}`;
+  return `HF-${String(counter.seq).padStart(4, "0")}`;
 };
 
 module.exports = generateComplaintId;

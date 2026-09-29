@@ -1,69 +1,74 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { fetchMyComplaints, fetchComplaintStats } from "../api/complaintApi";
-import ComplaintCard from "../components/ComplaintCard";
+import { getMyComplaints } from "../api/complaintApi";
 import StatisticsCard from "../components/StatisticsCard";
+import ComplaintCard from "../components/ComplaintCard";
+import useAuth from "../hooks/useAuth";
 
 const ResidentDashboard = () => {
+  const { user } = useAuth();
   const [complaints, setComplaints] = useState([]);
-  const [stats, setStats] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
+  const loadComplaints = async () => {
+    setLoading(true);
+    try {
+      const res = await getMyComplaints();
+      setComplaints(res.data.data.complaints);
+    } catch (err) {
+      setError(err.response?.data?.message || "Failed to load complaints.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
   useEffect(() => {
-    const load = async () => {
-      try {
-        const [complaintsRes, statsRes] = await Promise.all([
-          fetchMyComplaints(),
-          fetchComplaintStats(),
-        ]);
-        setComplaints(complaintsRes.data.data.complaints);
-        setStats(statsRes.data.data);
-      } catch (err) {
-        setError(err.response?.data?.message || "Failed to load dashboard.");
-      } finally {
-        setLoading(false);
-      }
-    };
-    load();
+    loadComplaints();
   }, []);
 
-  if (loading) return <div className="loading-state">Loading...</div>;
+  const total = complaints.length;
+  const submitted = complaints.filter((c) => c.status === "SUBMITTED").length;
+  const underProgress = complaints.filter((c) => c.status === "UNDER_PROGRESS").length;
+  const resolved = complaints.filter((c) => c.status === "RESOLVED").length;
 
   return (
     <div className="page-container">
       <div className="dashboard-header">
-        <h2>My Complaints</h2>
+        <div>
+          <h2 style={{ margin: 0 }}>Welcome, {user?.fullName}</h2>
+          <div style={{ color: "#6b7280", fontSize: "0.9rem" }}>Room {user?.roomNumber}</div>
+        </div>
         <Link to="/resident/complaints/new" className="btn btn-primary">
-          + New Complaint
+          + Create Complaint
         </Link>
       </div>
 
+      <div className="stats-grid">
+        <StatisticsCard label="Total Complaints" value={total} />
+        <StatisticsCard label="Submitted" value={submitted} />
+        <StatisticsCard label="Under Progress" value={underProgress} />
+        <StatisticsCard label="Resolved" value={resolved} />
+      </div>
+
+      <div className="section-title">Complaint History</div>
+
       {error && <div className="alert alert-error">{error}</div>}
-
-      {stats && (
-        <div className="stats-grid">
-          <StatisticsCard label="Total" value={stats.total} variant="default" />
-          <StatisticsCard label="Submitted" value={stats.submitted} variant="submitted" />
-          <StatisticsCard label="Under Progress" value={stats.underProgress} variant="progress" />
-          <StatisticsCard label="Resolved" value={stats.resolved} variant="resolved" />
-          <StatisticsCard label="Overdue" value={stats.overdue} variant="overdue" />
-        </div>
-      )}
-
-      {complaints.length === 0 ? (
+      {loading ? (
+        <div className="loading-state">Loading complaints...</div>
+      ) : complaints.length === 0 ? (
         <div className="empty-state card">
-          <p>You haven't raised any complaints yet.</p>
-          <Link to="/resident/complaints/new" className="btn btn-primary">
-            Raise your first complaint
-          </Link>
+          You haven't submitted any complaints yet.
+          <div style={{ marginTop: "0.75rem" }}>
+            <Link to="/resident/complaints/new" className="btn btn-primary">
+              Submit your first complaint
+            </Link>
+          </div>
         </div>
       ) : (
-        <div className="complaints-grid">
-          {complaints.map((c) => (
-            <ComplaintCard key={c._id} complaint={c} />
-          ))}
-        </div>
+        complaints.map((c) => (
+          <ComplaintCard key={c._id} complaint={c} basePath="/resident/complaints" />
+        ))
       )}
     </div>
   );
