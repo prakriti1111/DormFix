@@ -1,0 +1,17 @@
+HostelFix — Mid-Semester Demo Video
+Group Number: [Group Number]
+
+Video Link: [Paste your unlisted YouTube / Google Drive / Loom link here]
+
+The video should show (recommended, ~5-8 minutes):
+1. Resident registration and login
+2. Submitting a complaint with an image
+3. Viewing complaint status on the resident dashboard
+4. Warden login and viewing all complaints
+5. Warden filtering/sorting and manually reordering complaints
+6. Warden updating complaint status (SUBMITTED -> UNDER_PROGRESS -> RESOLVED)
+7. Resident submitting feedback after resolution
+8. A brief walkthrough of the codebase structure (routes/controllers/services)
+
+Make sure the link's sharing permissions allow the evaluator to view
+it without requesting access.
