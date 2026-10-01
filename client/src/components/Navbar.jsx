@@ -12,13 +12,24 @@ const Navbar = () => {
 
   return (
     <nav className="navbar">
-      <span className="brand">dormfix</span>
+      <span className="brand">
+        dormfix
+      </span>
+
       {user && (
         <div className="nav-right">
           <span>
-            {user.fullName} ({user.role === "warden" ? "Warden" : "Resident"})
+            {user.fullName} (
+            {user.role === "warden"
+              ? "Warden"
+              : "Resident"}
+            )
           </span>
-          <button className="logout-btn" onClick={handleLogout}>
+
+          <button
+            className="logout-btn"
+            onClick={handleLogout}
+          >
             Logout
           </button>
         </div>

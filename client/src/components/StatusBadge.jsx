@@ -5,7 +5,9 @@ const STATUS_LABELS = {
 };
 
 const StatusBadge = ({ status }) => (
-  <span className={`status-badge status-${status}`}>
+  <span
+    className={`status-badge status-${status}`}
+  >
     {STATUS_LABELS[status] || status}
   </span>
 );
