@@ -6,7 +6,7 @@ const api = axios.create({
 
 // Attach the JWT (if present) to every outgoing request
 api.interceptors.request.use((config) => {
-  const token = localStorage.getItem("hostelfix_token");
+  const token = localStorage.getItem("dormfix_token");
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;
   }
@@ -18,8 +18,8 @@ api.interceptors.response.use(
   (response) => response,
   (error) => {
     if (error.response && error.response.status === 401) {
-      localStorage.removeItem("hostelfix_token");
-      localStorage.removeItem("hostelfix_user");
+      localStorage.removeItem("dormfix_token");
+      localStorage.removeItem("dormfix_user");
       if (window.location.pathname !== "/login") {
         window.location.href = "/login";
       }

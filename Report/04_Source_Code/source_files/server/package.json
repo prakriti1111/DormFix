@@ -1,7 +1,7 @@
 {
-  "name": "hostelfix-server",
+  "name": "dormfix-server",
   "version": "1.0.0",
-  "description": "HostelFix backend - Hostel Complaint & Maintenance Management System",
+  "description": "Dormfix backend - Hostel Complaint & Maintenance Management System",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",

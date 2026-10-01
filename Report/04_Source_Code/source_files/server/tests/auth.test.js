@@ -13,7 +13,7 @@ describe("Auth API", () => {
     fullName: "Test Student",
     registrationNumber: "REGTEST001",
     roomNumber: "T-100",
-    email: "teststudent@hostelfix.edu",
+    email: "teststudent@dormfix.edu",
     password: "Test@1234",
   };
 
@@ -33,7 +33,7 @@ describe("Auth API", () => {
   it("should reject invalid login credentials", async () => {
     const res = await request(app)
       .post("/api/auth/login")
-      .send({ email: "nouser@hostelfix.edu", password: "wrongpass" });
+      .send({ email: "nouser@dormfix.edu", password: "wrongpass" });
     expect(res.statusCode).toBe(401);
   });
 

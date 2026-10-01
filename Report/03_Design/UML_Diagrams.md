@@ -1,5 +1,5 @@
 # UML Diagrams
-## HostelFix — Hostel Complaint & Maintenance Management System
+## Dormfix — Hostel Complaint & Maintenance Management System
 
 **Group Number:** [Group Number]
 

@@ -1,5 +1,5 @@
 # Use Cases and User Stories
-## HostelFix — Hostel Complaint & Maintenance Management System
+## Dormfix — Hostel Complaint & Maintenance Management System
 
 **Group Number:** [Group Number]
 

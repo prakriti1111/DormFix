@@ -1,12 +1,12 @@
 # Mid-Semester Project Report
 
-## HostelFix — Hostel Complaint & Maintenance Management System
+## Dormfix — Hostel Complaint & Maintenance Management System
 
 ---
 
 ### Cover Page
 
-**Project Title:** HostelFix — Hostel Complaint & Maintenance Management System
+**Project Title:** Dormfix — Hostel Complaint & Maintenance Management System
 **Group Number:** [Group Number]
 **Group Members:**
 | Name | Registration Number |
@@ -40,7 +40,7 @@ at the warden's office. This approach has three recurring problems:
    see everything outstanding, tell what's overdue, or decide what to
    handle first.
 
-HostelFix was chosen as our project because it addresses a genuine,
+Dormfix was chosen as our project because it addresses a genuine,
 observable problem with a well-bounded scope — it does not require
 external integrations, has a clear two-role user model, and gives us
 room to demonstrate real software-engineering practices (requirements
@@ -135,7 +135,7 @@ along with 7 representative user stories.
 ## 7. System Design
 
 ### 7.1 Architecture
-HostelFix follows a three-tier client-server architecture: a React
+Dormfix follows a three-tier client-server architecture: a React
 single-page frontend, a layered Express REST API (routes →
 middleware → controllers → services → models), and a MongoDB data
 store. Business logic lives exclusively in the service layer, keeping

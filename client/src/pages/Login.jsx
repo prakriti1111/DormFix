@@ -38,7 +38,7 @@ const Login = () => {
   return (
     <div className="page-container">
       <div className="auth-box card">
-        <h2>Login to HostelFix</h2>
+        <h2>Login to Dormfix</h2>
 
         {error && (
           <div className="alert alert-error">

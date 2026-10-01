@@ -1,6 +1,6 @@
 # AI Tool Usage Disclosure
 
-## HostelFix — Hostel Complaint & Maintenance Management System
+## Dormfix — Hostel Complaint & Maintenance Management System
 **Group Number:** [Group Number]
 
 In line with the academic integrity requirements of this evaluation,
