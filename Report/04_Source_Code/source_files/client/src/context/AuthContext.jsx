@@ -9,7 +9,7 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     const bootstrap = async () => {
-      const token = localStorage.getItem("hostelfix_token");
+      const token = localStorage.getItem("dormfix_token");
       if (!token) {
         setLoading(false);
         return;
@@ -18,8 +18,8 @@ export const AuthProvider = ({ children }) => {
         const res = await fetchCurrentUser();
         setUser(res.data.data.user);
       } catch (err) {
-        localStorage.removeItem("hostelfix_token");
-        localStorage.removeItem("hostelfix_user");
+        localStorage.removeItem("dormfix_token");
+        localStorage.removeItem("dormfix_user");
       } finally {
         setLoading(false);
       }
@@ -30,8 +30,8 @@ export const AuthProvider = ({ children }) => {
   const login = async (email, password) => {
     const res = await loginUser({ email, password });
     const { token, user: loggedInUser } = res.data.data;
-    localStorage.setItem("hostelfix_token", token);
-    localStorage.setItem("hostelfix_user", JSON.stringify(loggedInUser));
+    localStorage.setItem("dormfix_token", token);
+    localStorage.setItem("dormfix_user", JSON.stringify(loggedInUser));
     setUser(loggedInUser);
     return loggedInUser;
   };
@@ -39,15 +39,15 @@ export const AuthProvider = ({ children }) => {
   const register = async (payload) => {
     const res = await registerResident(payload);
     const { token, user: newUser } = res.data.data;
-    localStorage.setItem("hostelfix_token", token);
-    localStorage.setItem("hostelfix_user", JSON.stringify(newUser));
+    localStorage.setItem("dormfix_token", token);
+    localStorage.setItem("dormfix_user", JSON.stringify(newUser));
     setUser(newUser);
     return newUser;
   };
 
   const logout = () => {
-    localStorage.removeItem("hostelfix_token");
-    localStorage.removeItem("hostelfix_user");
+    localStorage.removeItem("dormfix_token");
+    localStorage.removeItem("dormfix_user");
     setUser(null);
   };
 

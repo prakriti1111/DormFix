@@ -30,17 +30,17 @@ const run = async () => {
   console.log("Creating demo warden...");
   const warden = await User.create({
     fullName: "Mr. R. K. Sharma",
-    email: "warden@hostelfix.edu",
+    email: "warden@dormfix.edu",
     password: WARDEN_PASSWORD,
     role: "warden",
   });
 
   console.log("Creating demo residents...");
   const residentsData = [
-    { fullName: "Aarav Mehta", registrationNumber: "REG2024001", roomNumber: "A-101", email: "aarav@hostelfix.edu" },
-    { fullName: "Priya Nair", registrationNumber: "REG2024002", roomNumber: "A-102", email: "priya@hostelfix.edu" },
-    { fullName: "Rohan Gupta", registrationNumber: "REG2024003", roomNumber: "B-201", email: "rohan@hostelfix.edu" },
-    { fullName: "Sneha Iyer", registrationNumber: "REG2024004", roomNumber: "B-202", email: "sneha@hostelfix.edu" },
+    { fullName: "Aarav Mehta", registrationNumber: "REG2024001", roomNumber: "A-101", email: "aarav@dormfix.edu" },
+    { fullName: "Priya Nair", registrationNumber: "REG2024002", roomNumber: "A-102", email: "priya@dormfix.edu" },
+    { fullName: "Rohan Gupta", registrationNumber: "REG2024003", roomNumber: "B-201", email: "rohan@dormfix.edu" },
+    { fullName: "Sneha Iyer", registrationNumber: "REG2024004", roomNumber: "B-202", email: "sneha@dormfix.edu" },
   ];
 
   const residents = [];
@@ -136,8 +136,8 @@ const run = async () => {
 
   console.log("\nSeed complete.\n");
   console.log("Demo credentials (development only):");
-  console.log(`  Warden   -> email: warden@hostelfix.edu   password: ${WARDEN_PASSWORD}`);
-  console.log(`  Resident -> email: aarav@hostelfix.edu    password: ${RESIDENT_PASSWORD}`);
+  console.log(`  Warden   -> email: warden@dormfix.edu   password: ${WARDEN_PASSWORD}`);
+  console.log(`  Resident -> email: aarav@dormfix.edu    password: ${RESIDENT_PASSWORD}`);
   console.log("");
 
   await mongoose.connection.close();

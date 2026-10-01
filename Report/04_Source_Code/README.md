@@ -1,4 +1,4 @@
-# HostelFix — Hostel Complaint & Maintenance Management System
+# Dormfix — Hostel Complaint & Maintenance Management System
 
 A small-scale, production-structured MERN stack application for managing
 hostel maintenance complaints, built as a Software Engineering and Project
@@ -8,7 +8,7 @@ Management (SEPM) academic project.
 
 ## 1. Project Overview
 
-HostelFix lets hostel residents submit maintenance complaints (broken
+Dormfix lets hostel residents submit maintenance complaints (broken
 fixtures, electrical issues, water supply problems, etc.) and lets a
 warden track, prioritize, and resolve them. It focuses on doing a small
 set of features correctly and securely rather than covering every
@@ -80,7 +80,7 @@ controllers (HTTP concerns) → services (business logic) → models
 ## 8. Folder Structure
 
 ```
-HostelFix/
+Dormfix/
 ├── server/
 │   ├── config/          # DB connection
 │   ├── controllers/     # Request/response handling
@@ -179,14 +179,14 @@ GET    /api/dashboard/warden           Aggregated warden statistics
 ### Clone / unzip the project, then:
 
 ```bash
-cd HostelFix
+cd Dormfix
 ```
 
 ## 13. Environment Variables
 
 **server/.env** (copy from `server/.env.example`):
 ```
-MONGO_URI=mongodb://127.0.0.1:27017/hostelfix
+MONGO_URI=mongodb://127.0.0.1:27017/dormfix
 JWT_SECRET=replace_this_with_a_long_random_secret
 JWT_EXPIRES_IN=7d
 PORT=5000
@@ -233,8 +233,8 @@ npm run dev                 # starts on http://localhost:5173
 **Demo credentials (development only):**
 | Role     | Email                     | Password (default, see .env) |
 |----------|---------------------------|-------------------------------|
-| Warden   | warden@hostelfix.edu      | Warden@123                    |
-| Resident | aarav@hostelfix.edu       | Resident@123                  |
+| Warden   | warden@dormfix.edu      | Warden@123                    |
+| Resident | aarav@dormfix.edu       | Resident@123                  |
 
 Warden accounts are intentionally **not** creatable through public
 registration — the seed script is the documented, controlled way to

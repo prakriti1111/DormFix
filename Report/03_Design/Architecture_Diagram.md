@@ -1,5 +1,5 @@
 # System Architecture
-## HostelFix — Hostel Complaint & Maintenance Management System
+## Dormfix — Hostel Complaint & Maintenance Management System
 
 **Group Number:** [Group Number]
 
@@ -47,7 +47,7 @@ graph TD
 
 ## 2. Architectural Style
 
-HostelFix follows a classic **three-tier client-server architecture**:
+Dormfix follows a classic **three-tier client-server architecture**:
 
 1. **Presentation Tier** — React single-page application responsible
    only for rendering UI and calling the API. It holds no business

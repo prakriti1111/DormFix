@@ -125,7 +125,7 @@ along with 7 representative user stories.
 ## 7. System Design
 
 ### 7.1 Architecture
-HostelFix follows a three-tier client-server architecture: a React
+Dormfix follows a three-tier client-server architecture: a React
 single-page frontend, a layered Express REST API (routes →
 middleware → controllers → services → models), and a MongoDB data
 store. Business logic lives exclusively in the service layer, keeping

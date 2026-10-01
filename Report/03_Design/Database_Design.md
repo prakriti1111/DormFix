@@ -1,5 +1,5 @@
 # Database Design
-## HostelFix — Hostel Complaint & Maintenance Management System
+## Dormfix — Hostel Complaint & Maintenance Management System
 
 **Group Number:** [Group Number]
 **Database:** MongoDB (document-oriented, accessed via Mongoose)
