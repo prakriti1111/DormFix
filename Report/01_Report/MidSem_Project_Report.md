@@ -1,24 +1,23 @@
 # Mid-Semester Project Report
 
-## HostelFix — Hostel Complaint & Maintenance Management System
+## DormFix — Hostel Complaint & Maintenance Management System
 
 ---
 
 ### Cover Page
 
-**Project Title:** HostelFix — Hostel Complaint & Maintenance Management System
-**Group Number:** [Group Number]
+**Project Title:** DormFix — Hostel Complaint & Maintenance Management System
+
 **Group Members:**
 | Name | Registration Number |
 |------|------------------------|
-| [Member 1 Name] | [Reg No.] |
-| [Member 2 Name] | [Reg No.] |
-| [Member 3 Name] | [Reg No.] |
-| [Member 4 Name] | [Reg No.] |
+| Prakriti Gupta | 20243209 |
+| Paramita Ghosh | 20243197 |
+| Naina | 20243172 |
+| Nishi Gupta | 20243187 |
 
-**Course Name and Section:** [Course Name, Section]
-**Supervisor / Instructor:** [Supervisor Name]
-**Submission Date:** [Date]
+**Course Name and Section:** [Software Engineering and Project Management (SEPM), Section D]
+
 
 ---
 
@@ -40,7 +39,7 @@ at the warden's office. This approach has three recurring problems:
    see everything outstanding, tell what's overdue, or decide what to
    handle first.
 
-HostelFix was chosen as our project because it addresses a genuine,
+DormFix was chosen as our project because it addresses a genuine,
 observable problem with a well-bounded scope — it does not require
 external integrations, has a clear two-role user model, and gives us
 room to demonstrate real software-engineering practices (requirements
@@ -55,9 +54,7 @@ testing) without ballooning into an unmanageably large system.
    sort, and act on all complaints.
 3. Enforce accountability through timestamps, a strict status
    workflow, and a server-calculated 48-hour overdue flag.
-4. Allow the warden to prioritize complaints manually — deliberately
-   avoiding any automated or AI-driven urgency scoring, since
-   maintenance judgment calls belong with a human.
+4. Allow the warden to prioritize complaints manually.
 5. Close the feedback loop by letting residents rate how their
    complaint was resolved.
 6. Demonstrate secure, role-based access control so that data
@@ -87,17 +84,12 @@ testing) without ballooning into an unmanageably large system.
 - Mobile application (native)
 - GPS or live tracking of maintenance work
 
-These exclusions are deliberate design decisions, not omissions due to
-time constraints — they keep the system's responsibility clearly
-bounded to "manage the complaint record," while the actual maintenance
-work happens through the warden's existing external processes.
 
 ### 3.3 Assumptions and Constraints
 - Each resident has exactly one hostel room and one account.
 - A single warden account exists for the hostel block covered by this
   version of the system.
-- The system is built strictly on the MERN stack, as required by the
-  course project brief.
+- The system is built strictly on the MERN stack.
 - Local file storage is used for uploaded images in this phase; the
   upload layer is structured so it could later be swapped for cloud
   storage (e.g. Cloudinary) without touching business logic.
@@ -114,16 +106,14 @@ work happens through the warden's existing external processes.
 
 ## 5. Requirements Specification
 
-A complete requirements specification is provided in the companion
-document `02_Requirements/SRS.md`. In summary:
+A complete requirements specification is provided in the SRS
+document. In summary:
 
 - **21 functional requirements** covering authentication, complaint
   lifecycle, feedback, and warden operations.
 - **10 non-functional requirements** covering security, performance,
   usability, and maintainability.
-- Requirements are prioritized using a MoSCoW-style classification;
-  all "Must Have" and "Should Have" requirements are implemented as of
-  this checkpoint (see Section 10 below for the detailed breakdown).
+
 
 ## 6. Requirements Model
 

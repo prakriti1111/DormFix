@@ -54,16 +54,4 @@ showing contributions from each member. Paste the summary below:
 [Paste commit log summary or screenshot reference here]
 ```
 
-## 4. Individual Contribution Declaration
 
-We, the undersigned members of Group [Group Number], confirm that the
-contribution percentages and task breakdown listed above accurately
-reflect each member's individual effort on this project, and that all
-members are able to explain and defend any part of the submitted work.
-
-| Member Name | Signature / Confirmation | Date |
-|--------------|-----------------------------|------|
-| [Member 1 Name] | [Signed / Confirmed] | [Date] |
-| [Member 2 Name] | [Signed / Confirmed] | [Date] |
-| [Member 3 Name] | [Signed / Confirmed] | [Date] |
-| [Member 4 Name] | [Signed / Confirmed] | [Date] |
