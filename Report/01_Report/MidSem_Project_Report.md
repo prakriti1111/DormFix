@@ -16,7 +16,7 @@
 | Naina | 20243172 |
 | Nishi Gupta | 20243187 |
 
-**Course Name and Section:** [Software Engineering and Project Management (SEPM), Section D]
+**Course Name and Section:** Software Engineering and Project Management (SEPM), Section D
 
 
 ---
@@ -48,18 +48,25 @@ testing) without ballooning into an unmanageably large system.
 
 ## 2. Project Objectives
 
-1. Provide residents with a simple, reliable way to report and track
-   hostel maintenance issues.
-2. Give the warden a single, structured dashboard to view, filter,
-   sort, and act on all complaints.
-3. Enforce accountability through timestamps, a strict status
-   workflow, and a server-calculated 48-hour overdue flag.
-4. Allow the warden to prioritize complaints manually.
-5. Close the feedback loop by letting residents rate how their
-   complaint was resolved.
-6. Demonstrate secure, role-based access control so that data
-   ownership boundaries (a resident's own complaints) are enforced on
-   the server, not just hidden in the UI.
+1. To provide residents with a simple and reliable mechanism for reporting hostel maintenance problems.
+
+2. To allow residents to monitor the current status of their complaints.
+
+3. To provide wardens with a centralized dashboard for monitoring and managing hostel complaints.
+
+4. To maintain a structured complaint lifecycle from submission to resolution.
+
+5. To identify complaints that have remained unresolved beyond the defined 48-hour threshold.
+
+6. To allow the warden to manually prioritize complaints according to operational requirements.
+
+7. To provide residents with a mechanism to submit feedback after their complaint has been resolved.
+
+8. To enforce role-based authorization and data ownership at the server level.
+
+9. To maintain reliable and consistent complaint data through server-side validation and controlled state transitions.
+
+10. To provide a maintainable software architecture that can be extended with additional hostel-management capabilities in the future.
 
 ## 3. Scope of the Project
 
@@ -109,10 +116,68 @@ testing) without ballooning into an unmanageably large system.
 A complete requirements specification is provided in the SRS
 document. In summary:
 
-- **21 functional requirements** covering authentication, complaint
-  lifecycle, feedback, and warden operations.
-- **10 non-functional requirements** covering security, performance,
-  usability, and maintainability.
+- ### Functional Requirements
+
+The functional requirements define the operations and services that DormFix shall provide to its users. Each requirement is assigned a unique identifier to support traceability across system design, implementation, and testing.
+
+| ID | Functional Requirement |
+|---|---|
+| FR-01 | The system shall allow a new resident to register using the required account information. |
+| FR-02 | The system shall prevent duplicate registration for an existing resident account. |
+| FR-03 | The system shall authenticate registered residents and the authorized warden. |
+| FR-04 | The system shall issue an authentication token upon successful login. |
+| FR-05 | The system shall restrict access to protected resources to authenticated users. |
+| FR-06 | The system shall enforce role-based access control for Resident and Warden operations. |
+| FR-07 | The system shall allow an authenticated resident to submit a maintenance complaint. |
+| FR-08 | The system shall allow a resident to attach an optional image to a complaint. |
+| FR-09 | The system shall validate complaint information and uploaded image type and size. |
+| FR-10 | The system shall associate each complaint with the authenticated resident who created it. |
+| FR-11 | The system shall allow residents to view their complaint history. |
+| FR-12 | The system shall allow authorized users to view complaint details according to their assigned roles. |
+| FR-13 | The system shall maintain complaint status according to the defined lifecycle: SUBMITTED, UNDER_PROGRESS, and RESOLVED. |
+| FR-14 | The system shall reject invalid complaint status transitions. |
+| FR-15 | The system shall determine whether an unresolved complaint has exceeded the defined 48-hour threshold. |
+| FR-16 | The system shall allow the warden to filter and sort complaints using supported criteria. |
+| FR-17 | The system shall allow the warden to manually reorder complaints according to priority. |
+| FR-18 | The system shall provide the warden with aggregated complaint statistics and daily resolution trends. |
+| FR-19 | The system shall allow residents to submit a rating and an optional comment for resolved complaints. |
+| FR-20 | The system shall prevent multiple feedback submissions for the same complaint. |
+| FR-21 | The system shall persist complaint and feedback records in the database. |
+
+- ### Non-Functional Requirements
+
+Non-functional requirements specify the quality attributes and operational constraints that DormFix must satisfy.
+
+#### 1. Security
+
+| ID | Requirement |
+|---|---|
+| NFR-01 | The system shall store passwords using secure one-way hashing and shall not store passwords in plaintext. |
+| NFR-02 | The system shall require valid authentication for access to protected API endpoints. |
+| NFR-03 | The system shall enforce role-based authorization on the server for all protected operations. |
+| NFR-04 | The system shall prevent residents from accessing complaints belonging to other residents. |
+| NFR-05 | The system shall derive resident identity from the authenticated user context rather than trusting client-provided identity information. |
+
+#### 2. Performance
+
+| ID | Requirement |
+|---|---|
+| NFR-06 | The system shall process common operations, including complaint listing and dashboard retrieval, within an acceptable response time under the expected hostel workload. |
+
+#### 3. Usability
+
+| ID | Requirement |
+|---|---|
+| NFR-07 | The system shall provide a clear and consistent user interface for complaint submission, status tracking, and complaint management. |
+| NFR-08 | The system shall display understandable validation and error messages to help users correct invalid inputs and recover from failed operations. |
+
+#### 4. Maintainability
+
+| ID | Requirement |
+|---|---|
+| NFR-09 | The backend shall separate business logic from HTTP request handling and presentation logic. |
+| NFR-10 | The backend shall follow a modular architecture that allows individual components to be maintained and modified independently. |
+
 
 
 ## 6. Requirements Model
@@ -127,25 +192,111 @@ along with 7 representative user stories.
 ### 7.1 Architecture
 Dormfix follows a three-tier client-server architecture: a React
 single-page frontend, a layered Express REST API (routes →
-middleware → controllers → services → models), and a MongoDB data
-store. Business logic lives exclusively in the service layer, keeping
-controllers thin and making rules testable independent of HTTP
-concerns. Full diagrams are in `03_Design/Architecture_Diagram.md`.
+middleware → controllers → services → models), and a MongoDB data store. Business logic lives exclusively in the service layer, keeping controllers thin and making rules testable independent of HTTP concerns. Full diagrams are in `03_Design/Architecture_Diagram.md`.
+
+```mermaid
+flowchart TB
+    A["Resident / Warden"] --> B["React Frontend<br/>User Interface"]
+    B --> C["Express REST API<br/>Routes"]
+    C --> D["Authentication &<br/>Authorization Middleware"]
+    D --> E["Controllers"]
+    E --> F["Service Layer<br/><br/>Complaint Ownership<br/>Status Validation<br/>Feedback Eligibility<br/>Overdue Calculation<br/>Priority Management"]
+    F --> G["Mongoose Models<br/>Schema & Data Validation"]
+    G --> H[("MongoDB<br/>Persistent Data Store")]
+
+    classDef client fill:#DCEBFF,stroke:#3973AC,color:#17365D,stroke-width:1.5px
+    classDef backend fill:#E8DDFB,stroke:#7856A6,color:#38245C,stroke-width:1.5px
+    classDef service fill:#DDF3E4,stroke:#398257,color:#194D30,stroke-width:1.5px
+    classDef database fill:#FFE8CC,stroke:#C47A22,color:#704214,stroke-width:1.5px
+
+    class A,B client
+    class C,D,E backend
+    class F,G service
+    class H database
+```
+
+
+#
+The layered architecture separates presentation, request handling, business logic, and data persistence. This separation improves code organization, maintainability, and testability.
+
+The service layer is responsible for enforcing the primary business rules of DormFix, including complaint ownership validation, permitted status transitions, feedback eligibility, overdue calculation, and manual complaint prioritization.
+
+By keeping these rules independent of the frontend and minimizing their dependence on HTTP-specific logic, the system makes it easier to test individual operations, identify defects, and modify functionality without affecting unrelated components.
+
+The architecture also ensures that security-sensitive operations are validated on the backend rather than relying solely on frontend restrictions.
+
 
 ### 7.2 Module Description
-| Module | Responsibility |
-|--------|-----------------|
-| Auth | Registration, login, JWT issuance |
-| Complaint | Creation, retrieval, status transitions, manual reordering, overdue calculation |
-| Feedback | Rating/comment submission tied to resolved complaints |
-| Dashboard | Aggregated statistics for the warden |
-| Upload | Image validation and storage |
+DormFix is organized into functional modules, each responsible for a specific set of operations. This modular design improves maintainability, separates responsibilities, and simplifies testing and future enhancements.
+
+| Module | Responsibilities |
+|---|---|
+| **Authentication Module** | Handles resident registration, login, password hashing, JWT generation, and authentication. |
+| **Authorization Module** | Enforces role-based access control and verifies complaint ownership before granting access to protected resources. |
+| **Complaint Module** | Manages complaint creation, retrieval, status transitions, manual prioritization, and overdue calculation. |
+| **Feedback Module** | Handles rating and comment submission for resolved complaints and prevents duplicate feedback submissions. |
+| **Dashboard Module** | Aggregates and presents complaint statistics, complaint status summaries, and daily resolution trends. |
+| **Upload Module** | Validates uploaded complaint images and manages their storage in the local file system. |
+
+
 
 ### 7.3 Database Design
-MongoDB collections (`users`, `complaints`, `feedbacks`, `counters`)
-and their relationships, indexing strategy, and key design trade-offs
-(such as denormalizing resident details onto complaint records for
-historical accuracy) are documented in `03_Design/Database_Design.md`.
+## 12. Database Design
+
+DormFix uses MongoDB as its persistent data store, with Mongoose providing schema definition, data validation, and database interaction.Detailed description of database is documented in `03_Design/Database_Design.md`.The primary collections used in the system are described below :
+
+### 12.1 Users
+
+The Users collection stores resident and warden account information.
+
+Typical fields include:
+- User identity
+- Authentication credentials
+- User role
+- Hostel and room information
+- Account metadata
+
+### 12.2 Complaints
+
+The Complaints collection stores maintenance complaint information submitted by residents.
+
+Typical fields include:
+- Complaint identifier
+- Resident reference
+- Complaint description
+- Resident information required for historical records
+- Room information
+- Image information
+- Current complaint status
+- Creation timestamp
+- Resolution timestamp
+- Priority order
+
+### 12.3 Feedback
+
+The Feedback collection stores resident feedback associated with resolved complaints.
+
+Typical fields include:
+- Complaint reference
+- Resident reference
+- Rating
+- Comment
+- Feedback submission timestamp
+
+### 12.4 Counters
+
+The Counters collection maintains sequence information required for generating sequential identifiers wherever applicable.
+
+### 12.5 Data Integrity
+
+DormFix enforces several application-level rules to maintain data integrity, consistency, and security:
+
+- **Complaint Ownership:** Complaint ownership is determined using the authenticated user's identity.
+- **Access Control:** Residents cannot access complaints belonging to other residents.
+- **Feedback Association:** Feedback is linked to a specific resolved complaint.
+- **Duplicate Feedback Prevention:** A complaint can receive feedback only once.
+- **Status Validation:** Complaint status changes must follow the permitted transition rules.
+- **Server-Side Overdue Calculation:** Overdue status is calculated by the server rather than being accepted from the client, ensuring consistent and reliable results. 
 
 ### 7.4 UML Diagrams
 A class diagram of the backend domain model, two sequence diagrams
@@ -164,11 +315,6 @@ A class diagram of the backend domain model, two sequence diagrams
 | Database | MongoDB + Mongoose | Document model suits the complaint entity well (variable fields like optional image, resolvedAt); Mongoose adds schema validation on top of MongoDB's flexibility |
 | Auth | JWT + bcryptjs | Stateless auth suited to a REST API; bcrypt is the standard for password hashing |
 | File Upload | Multer | De facto standard Express middleware for multipart form handling |
-
-We deliberately avoided Redis, GraphQL, WebSockets, and containerization
-for this project — none were necessary for the defined scope, and
-introducing them would have added operational complexity without a
-corresponding benefit for a system of this size.
 
 ## 9. Implementation Progress
 
@@ -189,9 +335,11 @@ corresponding benefit for a system of this size.
 
 ### 9.2 Features Under Development
 - Full automated test suite execution against a live test database
-  (scaffolding exists; wiring to `mongodb-memory-server` is in progress)
+  (scaffolding exists; wiring to mongodb-memory-server is in progress)
 - UI refinement for edge cases (very long descriptions, empty states
   on first load)
+- Handling of additional interface edge cases
+- Final accessibility and responsiveness review
 
 ### 9.3 Screenshots of the Working System
 *(Insert screenshots here before final submission — recommended set:
@@ -225,6 +373,56 @@ list with filters, status update in action, feedback form.)*
 
 ## 10. Testing Performed
 
+Testing is being performed at multiple levels to verify both functional correctness and security-related behavior.
+
+### 10.1 Authentication Testing
+
+Tests include:
+
+- Valid login
+- Invalid credentials
+- Duplicate registration
+- Protected endpoint access without authentication
+
+### 10.2 Authorization Testing
+
+Tests include:
+
+- Resident accessing resident-only functionality
+- Resident attempting to access warden-only endpoints
+- Resident attempting to access another resident's complaint
+- Invalid or manipulated complaint identifiers
+
+### 10.3 Complaint Testing
+
+Tests include:
+
+- Valid complaint creation
+- Missing or invalid complaint information
+- Description length validation
+- Image type validation
+- Image size validation
+- Complaint retrieval
+- Status transition validation
+
+### 10.4 Overdue Logic Testing
+
+The overdue mechanism is tested around the defined threshold, including complaints:
+
+- Below 48 hours
+- At approximately 48 hours
+- Beyond 48 hours
+- Already resolved complaints
+
+### 10.5 Feedback Testing
+
+Tests include:
+
+- Feedback for resolved complaints
+- Feedback for unresolved complaints
+- Duplicate feedback submission
+- Unauthorized feedback access
+
 A structured test case table (32 test cases across authentication,
 authorization, complaint management, overdue logic, and feedback) is
 provided in `05_Testing/Test_Cases.md`, with expected results defined
@@ -232,19 +430,29 @@ for each case. Actual results and pass/fail status, along with
 supporting screenshots, are being finalized ahead of submission and
 stored in `05_Testing/Test_Evidence/`.
 
-Example categories covered:
-- Valid and invalid login attempts
-- Duplicate registration handling
-- Unauthorized access to protected/warden-only endpoints
-- Cross-resident data access attempts (ID manipulation)
-- Complaint creation validation (description length, image type/size)
-- Status transition rule enforcement
-- Overdue flag correctness at various time thresholds
-- Feedback rules (post-resolution only, one submission per complaint)
-
 ## 11. Project-Management Status
 
 ### 11.1 Original Project Plan
+Development is being carried out incrementally, with requirements and design established before implementation of the corresponding modules. This approach allows individual modules to be developed and verified before the final system is integrated.
+
+The project is organized into the following major phases:
+
+1. Requirements Analysis
+
+2. System Design
+
+3. Authentication and Authorization
+
+4. Complaint Management
+
+5. Warden Management
+
+6. Feedback and Dashboard
+
+7. Testing and Verification
+
+8. Documentation and Demonstration
+
 See `06_Project_Management/Project_Plan.md` for the full 8-phase
 timeline (requirements/design → backend → complaint feature → warden
 feature → feedback/polish → **mid-semester checkpoint** → testing →
@@ -254,19 +462,25 @@ documentation/demo → buffer).
 The group has completed Phases 1 through 5 of the original plan —
 requirements, design, authentication, the complaint feature, the
 warden feature, and the feedback system — placing the project at
-approximately **[insert actual %, suggested range 50–60]%** completion
-against the full plan, which is within or slightly ahead of the
-40–60% target for this checkpoint.
+approximately **70%** completion
+against the full plan.
 
 ### 11.3 Delayed or Pending Tasks
 - Full automated test execution (in progress, see Section 9.2)
 - Final UI polish pass
 
 ### 11.4 Risks and Mitigation Plan
+
+| Risk                                              | Potential Impact                    | Mitigation                                                         |
+|---------------------------------------------------|-------------------------------------|--------------------------------------------------------------------|
+| Limited development time near final submission    | Incomplete testing or documentation | Maintain a final buffer period in the project schedule.            |
+| Database/environment failure during demonstration | System may become unavailable       | Maintain reproducible seed data and documented setup instructions. |
+| Incomplete automated testing                      | Undetected defects                  | Prioritize security, authorization, lifecycle, and validation tests. |
+| Scope expansion                                   | Delay in core functionality         | Maintain explicit in-scope and out-of-scope requirements.          |
+| Inconsistent team contributions                   | Delays in dependent modules         | Maintain task ownership and regular progress tracking.             |
+
 See `06_Project_Management/Project_Plan.md`, Section 4, for the full
-risk register. Key risks include team availability near the final
-deadline (mitigated by a reserved buffer week) and demo-environment
-reliability (mitigated by the seed script providing reproducible data).
+risk register. 
 
 ## 12. Individual Contribution Table
 
@@ -276,10 +490,10 @@ declaration from all members, is provided in
 
 | Member Name | Primary Responsibility | Contribution % |
 |--------------|---------------------------|-------------------|
-| [Member 1 Name] | [Responsibility] | [%] |
-| [Member 2 Name] | [Responsibility] | [%] |
-| [Member 3 Name] | [Responsibility] | [%] |
-| [Member 4 Name] | [Responsibility] | [%] |
+| Prakriti Gupta | [Responsibility] | [%] |
+| Paramita Ghosh | [Responsibility] | [%] |
+| Naina | [Responsibility] | [%] |
+| Nishi Gupta | [Responsibility] | [%] |
 
 ## 13. Challenges Faced and Solutions Attempted
 
@@ -291,20 +505,50 @@ declaration from all members, is provided in
 | Avoiding scope creep toward features like notifications | Reaffirmed scope boundaries early via the SRS MoSCoW prioritization and referred back to it during sprint planning (see Meeting Log) |
 | [Add any additional group-specific challenge] | [Add your group's actual solution] |
 
-## 14. Work Planned for the Remaining Semester
+## 15. Future Scope
 
-1. Complete and execute the full automated test suite against a real
-   test database; record pass/fail results and coverage.
-2. UI polish: refine empty/loading states, mobile responsiveness edge
-   cases, and accessibility basics (labels, contrast).
-3. Expand documentation with a full "Limitations" and "Future Scope"
-   discussion tied to actual testing outcomes.
-4. Prepare the final demo video and final report.
-5. Conduct a final security review pass (rate limiting considerations,
-   input sanitization review) before final submission.
-6. [Add any additional group-specific remaining work.]
+The current architecture provides a foundation for extending DormFix beyond the current release.
 
-## 15. References
+Possible future enhancements include:
+
+- Dedicated maintenance technician accounts
+- Technician assignment and work tracking
+- Email or SMS notifications
+- Push notifications
+- Real-time complaint updates
+- Mobile application
+- Maintenance analytics
+- Automatic complaint categorization
+- Automated priority recommendations
+- Hostel-wide maintenance reports
+- Integration with institutional authentication systems
+- Cloud-based image storage
+- Multi-hostel and multi-block support
+
+These features are outside the scope of the current release and would require corresponding changes to the requirements, architecture, security model, and testing strategy.
+
+# 16. Conclusion
+
+DormFix provides a structured digital workflow for managing hostel maintenance complaints.
+
+The system replaces fragmented complaint reporting with a centralized platform through which residents can submit and monitor complaints while wardens can manage, prioritize, and track maintenance activity.
+
+The implementation emphasizes several important software-engineering principles:
+
+- Requirement-driven development
+- Separation of concerns
+- Layered architecture
+- Role-based access control
+- Server-side validation
+- Data ownership enforcement
+- Controlled state transitions
+- Persistent data management
+- Structured testing
+- Explicit scope management
+
+The current implementation establishes the core complaint-management workflow and provides a foundation for future extensions such as technician management, notifications, real-time updates, and multi-hostel support.
+
+## 17. References
 
 1. Express.js Documentation — https://expressjs.com/
 2. Mongoose Documentation — https://mongoosejs.com/docs/
@@ -316,7 +560,3 @@ declaration from all members, is provided in
 
 ---
 
-*Note: This report should be exported to PDF before submission, with
-all `[bracketed placeholders]` replaced with your group's actual
-details, and the screenshot placeholders in Section 9.3 replaced with
-real images of the running application.*
