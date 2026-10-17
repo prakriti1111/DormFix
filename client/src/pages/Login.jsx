@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
@@ -38,7 +37,49 @@ const Login = () => {
   return (
     <div className="page-container">
       <div className="auth-box card">
-        <h2>Login to Dormfix</h2>
+        <div
+          style={{
+            width: "48px",
+            height: "48px",
+            borderRadius: "14px",
+            background: "#dfb6b2",
+            color: "#190019",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            fontWeight: 900,
+            fontSize: "1.15rem",
+            marginBottom: "1rem",
+          }}
+        >
+          D
+        </div>
+
+        <div
+          style={{
+            color: "#b895a8",
+            fontSize: "0.72rem",
+            textTransform: "uppercase",
+            letterSpacing: "0.1em",
+            fontWeight: 800,
+            marginBottom: "0.4rem",
+          }}
+        >
+          Hostel Maintenance
+        </div>
+
+        <h2>Welcome back</h2>
+
+        <p
+          style={{
+            color: "#b895a8",
+            fontSize: "0.88rem",
+            marginTop: "-0.8rem",
+            marginBottom: "1.5rem",
+          }}
+        >
+          Sign in to continue to DormFix.
+        </p>
 
         {error && (
           <div className="alert alert-error">
@@ -49,6 +90,7 @@ const Login = () => {
         <form onSubmit={handleSubmit}>
           <div className="form-group">
             <label htmlFor="email">Email</label>
+
             <input
               id="email"
               type="email"
@@ -61,6 +103,7 @@ const Login = () => {
 
           <div className="form-group">
             <label htmlFor="password">Password</label>
+
             <input
               id="password"
               type="password"
@@ -96,4 +139,3 @@ const Login = () => {
 };
 
 export default Login;
-
