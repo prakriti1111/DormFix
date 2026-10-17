@@ -39,7 +39,7 @@ const Login = () => {
       <div className="auth-box card">
         <div
           style={{
-            width: "48px",
+            width: "100px",
             height: "48px",
             borderRadius: "14px",
             background: "#dfb6b2",
@@ -52,7 +52,7 @@ const Login = () => {
             marginBottom: "1rem",
           }}
         >
-          D
+          DormFix
         </div>
 
         <div

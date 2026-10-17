@@ -1,15 +1,21 @@
-const STATUS_LABELS = {
-  SUBMITTED: "Submitted",
-  UNDER_PROGRESS: "Under Progress",
-  RESOLVED: "Resolved",
-};
-
-const StatusBadge = ({ status }) => (
-  <span
-    className={`status-badge status-${status}`}
+const StatisticsCard = ({
+  label,
+  value,
+  overdue,
+}) => (
+  <div
+    className={`stat-card ${
+      overdue ? "overdue" : ""
+    }`}
   >
-    {STATUS_LABELS[status] || status}
-  </span>
+    <div className="stat-value">
+      {value}
+    </div>
+
+    <div className="stat-label">
+      {label}
+    </div>
+  </div>
 );
 
-export default StatusBadge;
+export default StatisticsCard;
