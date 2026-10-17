@@ -25,3 +25,11 @@ We confirm that:
 - We take full responsibility for the correctness, security, and
   originality of the submitted material.
 
+## Addendum - Testing Artefacts
+
+| Field | Details |
+|-------|---------|
+| **Tool Name** | Claude (Anthropic) |
+| **Purpose of Use** | Writing the automated test suite (Jest/Supertest) in `server/tests/`, the test-case catalogue, the script that generates `Test_Cases.pdf`, and the manual UI test checklist. |
+| **Nature of Generated Content** | Test code, test-case tables, a small `server.js` change so the app can be imported by tests without connecting/listening, and report text for the Testing section. |
+| **Verification / Modification Performed** | **[Group to complete: e.g. "We ran the suite locally, read every test, confirmed expected results against the SRS, and executed the manual UI cases ourselves."]** |

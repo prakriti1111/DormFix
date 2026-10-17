@@ -1,0 +1,779 @@
+
+=============================== Coverage summary ===============================
+Statements   : 39.62% ( 168/424 )
+Branches     : 6.7% ( 11/164 )
+Functions    : 11.11% ( 7/63 )
+Lines        : 40.48% ( 166/410 )
+================================================================================
+(node:10856) [MONGOOSE] Warning: Duplicate schema index on {"email":1} found. This is often due to declaring an index using both "index: true" and "schema.index()". Please remove the duplicate index definition.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:10856) [MONGOOSE] Warning: Duplicate schema index on {"registrationNumber":1} found. This is often due to declaring an index using both "index: true" and "schema.index()". Please remove the duplicate index definition.
+FAIL tests/integration/complaints.test.js
+  Authorization
+    × TC-10: resident cannot access the warden-only complaint list (1 ms)
+    × TC-11: resident cannot view another resident's complaint
+    × TC-12: resident cannot update complaint status
+    × TC-13: resident cannot reorder complaints
+    × TC-14: warden can list all complaints (1 ms)
+    × TC-43: warden cannot submit a complaint (resident-only)
+    × TC-63: unauthenticated request to create a complaint is rejected
+  Complaint submission
+    × TC-15: submit a valid complaint without an image
+    × TC-16: submit a complaint with a valid image
+    × TC-17: description shorter than 5 characters is rejected
+    × TC-18: image larger than 5 MB is rejected
+    × TC-19: unsupported file type (PDF) is rejected
+    × TC-41: complaint IDs are sequential (HF-0001, HF-0002)
+    × TC-42: resident identity comes from the profile, not the request body
+  Complaint retrieval
+    × TC-20: resident sees only their own complaint history
+    × TC-44: warden filters by status
+    × TC-45: warden filters overdue complaints only
+    × TC-46: warden filters by room number
+    × TC-47: invalid status filter is rejected
+    × TC-48: sorting by oldest / newest orders by creation time
+    × TC-50: malformed complaint ID returns 400
+    × TC-51: well-formed but non-existent complaint ID returns 404
+    × TC-64: overdue flag is recalculated and persisted when complaints are read
+  Status workflow and ordering
+    × TC-21: SUBMITTED -> UNDER_PROGRESS
+    × TC-22: UNDER_PROGRESS -> RESOLVED sets resolvedAt and clears overdue
+    × TC-23: RESOLVED -> SUBMITTED is rejected (terminal state)
+    × TC-52: SUBMITTED -> RESOLVED directly is allowed (SRS BR-05)
+    × TC-49: unknown status value in the request is rejected
+    × TC-65: UNDER_PROGRESS -> SUBMITTED (backwards) is rejected
+    × TC-24: warden moves a complaint up (priorityOrder swapped with neighbour)
+    × TC-53: moving the top complaint up is a no-op
+    × TC-54: reorder with an invalid direction is rejected
+
+  ● Authorization › TC-10: resident cannot access the warden-only complaint list
+
+    MongoServerError: An existing index has the same name as the requested index. When index names are not specified, they are auto generated and can cause conflicts. Please refer to our documentation. Requested index: { v: 2, key: { email: 1 }, name: "email_1", background: true }, existing index: { v: 2, unique: true, key: { email: 1 }, name: "email_1", background: true }
+
+      at Connection.sendCommand (node_modules/mongodb/src/cmap/connection.ts:559:17)
+      at Connection.command (node_modules/mongodb/src/cmap/connection.ts:633:22)
+      at Server.command (node_modules/mongodb/src/sdam/server.ts:350:21)
+      at tryOperation (node_modules/mongodb/src/operations/execute_operation.ts:289:24)
+      at executeOperation (node_modules/mongodb/src/operations/execute_operation.ts:119:12)
+      at Collection.createIndex (node_modules/mongodb/src/collection.ts:640:21)
+
+  ● Authorization › TC-11: resident cannot view another resident's complaint
+
+    MongoServerError: An existing index has the same name as the requested index. When index names are not specified, they are auto generated and can cause conflicts. Please refer to our documentation. Requested index: { v: 2, key: { email: 1 }, name: "email_1", background: true }, existing index: { v: 2, unique: true, key: { email: 1 }, name: "email_1", background: true }
+
+      at Connection.sendCommand (node_modules/mongodb/src/cmap/connection.ts:559:17)
+      at Connection.command (node_modules/mongodb/src/cmap/connection.ts:633:22)
+      at Server.command (node_modules/mongodb/src/sdam/server.ts:350:21)
+      at tryOperation (node_modules/mongodb/src/operations/execute_operation.ts:289:24)
+      at executeOperation (node_modules/mongodb/src/operations/execute_operation.ts:119:12)
+      at Collection.createIndex (node_modules/mongodb/src/collection.ts:640:21)
+
+  ● Authorization › TC-12: resident cannot update complaint status
+
+    MongoServerError: An existing index has the same name as the requested index. When index names are not specified, they are auto generated and can cause conflicts. Please refer to our documentation. Requested index: { v: 2, key: { email: 1 }, name: "email_1", background: true }, existing index: { v: 2, unique: true, key: { email: 1 }, name: "email_1", background: true }
+
+      at Connection.sendCommand (node_modules/mongodb/src/cmap/connection.ts:559:17)
+      at Connection.command (node_modules/mongodb/src/cmap/connection.ts:633:22)
+      at Server.command (node_modules/mongodb/src/sdam/server.ts:350:21)
+      at tryOperation (node_modules/mongodb/src/operations/execute_operation.ts:289:24)
+      at executeOperation (node_modules/mongodb/src/operations/execute_operation.ts:119:12)
+      at Collection.createIndex (node_modules/mongodb/src/collection.ts:640:21)
+
+  ● Authorization › TC-13: resident cannot reorder complaints
+
+    MongoServerError: An existing index has the same name as the requested index. When index names are not specified, they are auto generated and can cause conflicts. Please refer to our documentation. Requested index: { v: 2, key: { email: 1 }, name: "email_1", background: true }, existing index: { v: 2, unique: true, key: { email: 1 }, name: "email_1", background: true }
+
+      at Connection.sendCommand (node_modules/mongodb/src/cmap/connection.ts:559:17)
+      at Connection.command (node_modules/mongodb/src/cmap/connection.ts:633:22)
+      at Server.command (node_modules/mongodb/src/sdam/server.ts:350:21)
+      at tryOperation (node_modules/mongodb/src/operations/execute_operation.ts:289:24)
+      at executeOperation (node_modules/mongodb/src/operations/execute_operation.ts:119:12)
+      at Collection.createIndex (node_modules/mongodb/src/collection.ts:640:21)
+
+  ● Authorization › TC-14: warden can list all complaints
+
+    MongoServerError: An existing index has the same name as the requested index. When index names are not specified, they are auto generated and can cause conflicts. Please refer to our documentation. Requested index: { v: 2, key: { email: 1 }, name: "email_1", background: true }, existing index: { v: 2, unique: true, key: { email: 1 }, name: "email_1", background: true }
+
+      at Connection.sendCommand (node_modules/mongodb/src/cmap/connection.ts:559:17)
+      at Connection.command (node_modules/mongodb/src/cmap/connection.ts:633:22)
+      at Server.command (node_modules/mongodb/src/sdam/server.ts:350:21)
+      at tryOperation (node_modules/mongodb/src/operations/execute_operation.ts:289:24)
+      at executeOperation (node_modules/mongodb/src/operations/execute_operation.ts:119:12)
+      at Collection.createIndex (node_modules/mongodb/src/collection.ts:640:21)
+
+  ● Authorization › TC-43: warden cannot submit a complaint (resident-only)
+
+    MongoServerError: An existing index has the same name as the requested index. When index names are not specified, they are auto generated and can cause conflicts. Please refer to our documentation. Requested index: { v: 2, key: { email: 1 }, name: "email_1", background: true }, existing index: { v: 2, unique: true, key: { email: 1 }, name: "email_1", background: true }
+
+      at Connection.sendCommand (node_modules/mongodb/src/cmap/connection.ts:559:17)
+      at Connection.command (node_modules/mongodb/src/cmap/connection.ts:633:22)
+      at Server.command (node_modules/mongodb/src/sdam/server.ts:350:21)
+      at tryOperation (node_modules/mongodb/src/operations/execute_operation.ts:289:24)
+      at executeOperation (node_modules/mongodb/src/operations/execute_operation.ts:119:12)
+      at Collection.createIndex (node_modules/mongodb/src/collection.ts:640:21)
+
+  ● Authorization › TC-63: unauthenticated request to create a complaint is rejected
+
+    MongoServerError: An existing index has the same name as the requested index. When index names are not specified, they are auto generated and can cause conflicts. Please refer to our documentation. Requested index: { v: 2, key: { email: 1 }, name: "email_1", background: true }, existing index: { v: 2, unique: true, key: { email: 1 }, name: "email_1", background: true }
+
+      at Connection.sendCommand (node_modules/mongodb/src/cmap/connection.ts:559:17)
+      at Connection.command (node_modules/mongodb/src/cmap/connection.ts:633:22)
+      at Server.command (node_modules/mongodb/src/sdam/server.ts:350:21)
+      at tryOperation (node_modules/mongodb/src/operations/execute_operation.ts:289:24)
+      at executeOperation (node_modules/mongodb/src/operations/execute_operation.ts:119:12)
+      at Collection.createIndex (node_modules/mongodb/src/collection.ts:640:21)
+
+  ● Complaint submission › TC-15: submit a valid complaint without an image
+
+    MongoServerError: An existing index has the same name as the requested index. When index names are not specified, they are auto generated and can cause conflicts. Please refer to our documentation. Requested index: { v: 2, key: { email: 1 }, name: "email_1", background: true }, existing index: { v: 2, unique: true, key: { email: 1 }, name: "email_1", background: true }
+
+      at Connection.sendCommand (node_modules/mongodb/src/cmap/connection.ts:559:17)
+      at Connection.command (node_modules/mongodb/src/cmap/connection.ts:633:22)
+      at Server.command (node_modules/mongodb/src/sdam/server.ts:350:21)
+      at tryOperation (node_modules/mongodb/src/operations/execute_operation.ts:289:24)
+      at executeOperation (node_modules/mongodb/src/operations/execute_operation.ts:119:12)
+      at Collection.createIndex (node_modules/mongodb/src/collection.ts:640:21)
+
+  ● Complaint submission › TC-16: submit a complaint with a valid image
+
+    MongoServerError: An existing index has the same name as the requested index. When index names are not specified, they are auto generated and can cause conflicts. Please refer to our documentation. Requested index: { v: 2, key: { email: 1 }, name: "email_1", background: true }, existing index: { v: 2, unique: true, key: { email: 1 }, name: "email_1", background: true }
+
+      at Connection.sendCommand (node_modules/mongodb/src/cmap/connection.ts:559:17)
+      at Connection.command (node_modules/mongodb/src/cmap/connection.ts:633:22)
+      at Server.command (node_modules/mongodb/src/sdam/server.ts:350:21)
+      at tryOperation (node_modules/mongodb/src/operations/execute_operation.ts:289:24)
+      at executeOperation (node_modules/mongodb/src/operations/execute_operation.ts:119:12)
+      at Collection.createIndex (node_modules/mongodb/src/collection.ts:640:21)
+
+  ● Complaint submission › TC-17: description shorter than 5 characters is rejected
+
+    MongoServerError: An existing index has the same name as the requested index. When index names are not specified, they are auto generated and can cause conflicts. Please refer to our documentation. Requested index: { v: 2, key: { email: 1 }, name: "email_1", background: true }, existing index: { v: 2, unique: true, key: { email: 1 }, name: "email_1", background: true }
+
+      at Connection.sendCommand (node_modules/mongodb/src/cmap/connection.ts:559:17)
+      at Connection.command (node_modules/mongodb/src/cmap/connection.ts:633:22)
+      at Server.command (node_modules/mongodb/src/sdam/server.ts:350:21)
+      at tryOperation (node_modules/mongodb/src/operations/execute_operation.ts:289:24)
+      at executeOperation (node_modules/mongodb/src/operations/execute_operation.ts:119:12)
+      at Collection.createIndex (node_modules/mongodb/src/collection.ts:640:21)
+
+  ● Complaint submission › TC-18: image larger than 5 MB is rejected
+
+    MongoServerError: An existing index has the same name as the requested index. When index names are not specified, they are auto generated and can cause conflicts. Please refer to our documentation. Requested index: { v: 2, key: { email: 1 }, name: "email_1", background: true }, existing index: { v: 2, unique: true, key: { email: 1 }, name: "email_1", background: true }
+
+      at Connection.sendCommand (node_modules/mongodb/src/cmap/connection.ts:559:17)
+      at Connection.command (node_modules/mongodb/src/cmap/connection.ts:633:22)
+      at Server.command (node_modules/mongodb/src/sdam/server.ts:350:21)
+      at tryOperation (node_modules/mongodb/src/operations/execute_operation.ts:289:24)
+      at executeOperation (node_modules/mongodb/src/operations/execute_operation.ts:119:12)
+      at Collection.createIndex (node_modules/mongodb/src/collection.ts:640:21)
+
+  ● Complaint submission › TC-19: unsupported file type (PDF) is rejected
+
+    MongoServerError: An existing index has the same name as the requested index. When index names are not specified, they are auto generated and can cause conflicts. Please refer to our documentation. Requested index: { v: 2, key: { email: 1 }, name: "email_1", background: true }, existing index: { v: 2, unique: true, key: { email: 1 }, name: "email_1", background: true }
+
+      at Connection.sendCommand (node_modules/mongodb/src/cmap/connection.ts:559:17)
+      at Connection.command (node_modules/mongodb/src/cmap/connection.ts:633:22)
+      at Server.command (node_modules/mongodb/src/sdam/server.ts:350:21)
+      at tryOperation (node_modules/mongodb/src/operations/execute_operation.ts:289:24)
+      at executeOperation (node_modules/mongodb/src/operations/execute_operation.ts:119:12)
+      at Collection.createIndex (node_modules/mongodb/src/collection.ts:640:21)
+
+  ● Complaint submission › TC-41: complaint IDs are sequential (HF-0001, HF-0002)
+
+    MongoServerError: An existing index has the same name as the requested index. When index names are not specified, they are auto generated and can cause conflicts. Please refer to our documentation. Requested index: { v: 2, key: { email: 1 }, name: "email_1", background: true }, existing index: { v: 2, unique: true, key: { email: 1 }, name: "email_1", background: true }
+
+      at Connection.sendCommand (node_modules/mongodb/src/cmap/connection.ts:559:17)
+      at Connection.command (node_modules/mongodb/src/cmap/connection.ts:633:22)
+      at Server.command (node_modules/mongodb/src/sdam/server.ts:350:21)
+      at tryOperation (node_modules/mongodb/src/operations/execute_operation.ts:289:24)
+      at executeOperation (node_modules/mongodb/src/operations/execute_operation.ts:119:12)
+      at Collection.createIndex (node_modules/mongodb/src/collection.ts:640:21)
+
+  ● Complaint submission › TC-42: resident identity comes from the profile, not the request body
+
+    MongoServerError: An existing index has the same name as the requested index. When index names are not specified, they are auto generated and can cause conflicts. Please refer to our documentation. Requested index: { v: 2, key: { email: 1 }, name: "email_1", background: true }, existing index: { v: 2, unique: true, key: { email: 1 }, name: "email_1", background: true }
+
+      at Connection.sendCommand (node_modules/mongodb/src/cmap/connection.ts:559:17)
+      at Connection.command (node_modules/mongodb/src/cmap/connection.ts:633:22)
+      at Server.command (node_modules/mongodb/src/sdam/server.ts:350:21)
+      at tryOperation (node_modules/mongodb/src/operations/execute_operation.ts:289:24)
+      at executeOperation (node_modules/mongodb/src/operations/execute_operation.ts:119:12)
+      at Collection.createIndex (node_modules/mongodb/src/collection.ts:640:21)
+
+  ● Complaint retrieval › TC-20: resident sees only their own complaint history
+
+    MongoServerError: An existing index has the same name as the requested index. When index names are not specified, they are auto generated and can cause conflicts. Please refer to our documentation. Requested index: { v: 2, key: { email: 1 }, name: "email_1", background: true }, existing index: { v: 2, unique: true, key: { email: 1 }, name: "email_1", background: true }
+
+      at Connection.sendCommand (node_modules/mongodb/src/cmap/connection.ts:559:17)
+      at Connection.command (node_modules/mongodb/src/cmap/connection.ts:633:22)
+      at Server.command (node_modules/mongodb/src/sdam/server.ts:350:21)
+      at tryOperation (node_modules/mongodb/src/operations/execute_operation.ts:289:24)
+      at executeOperation (node_modules/mongodb/src/operations/execute_operation.ts:119:12)
+      at Collection.createIndex (node_modules/mongodb/src/collection.ts:640:21)
+
+  ● Complaint retrieval › TC-44: warden filters by status
+
+    MongoServerError: An existing index has the same name as the requested index. When index names are not specified, they are auto generated and can cause conflicts. Please refer to our documentation. Requested index: { v: 2, key: { email: 1 }, name: "email_1", background: true }, existing index: { v: 2, unique: true, key: { email: 1 }, name: "email_1", background: true }
+
+      at Connection.sendCommand (node_modules/mongodb/src/cmap/connection.ts:559:17)
+      at Connection.command (node_modules/mongodb/src/cmap/connection.ts:633:22)
+      at Server.command (node_modules/mongodb/src/sdam/server.ts:350:21)
+      at tryOperation (node_modules/mongodb/src/operations/execute_operation.ts:289:24)
+      at executeOperation (node_modules/mongodb/src/operations/execute_operation.ts:119:12)
+      at Collection.createIndex (node_modules/mongodb/src/collection.ts:640:21)
+
+  ● Complaint retrieval › TC-45: warden filters overdue complaints only
+
+    MongoServerError: An existing index has the same name as the requested index. When index names are not specified, they are auto generated and can cause conflicts. Please refer to our documentation. Requested index: { v: 2, key: { email: 1 }, name: "email_1", background: true }, existing index: { v: 2, unique: true, key: { email: 1 }, name: "email_1", background: true }
+
+      at Connection.sendCommand (node_modules/mongodb/src/cmap/connection.ts:559:17)
+      at Connection.command (node_modules/mongodb/src/cmap/connection.ts:633:22)
+      at Server.command (node_modules/mongodb/src/sdam/server.ts:350:21)
+      at tryOperation (node_modules/mongodb/src/operations/execute_operation.ts:289:24)
+      at executeOperation (node_modules/mongodb/src/operations/execute_operation.ts:119:12)
+      at Collection.createIndex (node_modules/mongodb/src/collection.ts:640:21)
+
+  ● Complaint retrieval › TC-46: warden filters by room number
+
+    MongoServerError: An existing index has the same name as the requested index. When index names are not specified, they are auto generated and can cause conflicts. Please refer to our documentation. Requested index: { v: 2, key: { email: 1 }, name: "email_1", background: true }, existing index: { v: 2, unique: true, key: { email: 1 }, name: "email_1", background: true }
+
+      at Connection.sendCommand (node_modules/mongodb/src/cmap/connection.ts:559:17)
+      at Connection.command (node_modules/mongodb/src/cmap/connection.ts:633:22)
+      at Server.command (node_modules/mongodb/src/sdam/server.ts:350:21)
+      at tryOperation (node_modules/mongodb/src/operations/execute_operation.ts:289:24)
+      at executeOperation (node_modules/mongodb/src/operations/execute_operation.ts:119:12)
+      at Collection.createIndex (node_modules/mongodb/src/collection.ts:640:21)
+
+  ● Complaint retrieval › TC-47: invalid status filter is rejected
+
+    MongoServerError: An existing index has the same name as the requested index. When index names are not specified, they are auto generated and can cause conflicts. Please refer to our documentation. Requested index: { v: 2, key: { email: 1 }, name: "email_1", background: true }, existing index: { v: 2, unique: true, key: { email: 1 }, name: "email_1", background: true }
+
+      at Connection.sendCommand (node_modules/mongodb/src/cmap/connection.ts:559:17)
+      at Connection.command (node_modules/mongodb/src/cmap/connection.ts:633:22)
+      at Server.command (node_modules/mongodb/src/sdam/server.ts:350:21)
+      at tryOperation (node_modules/mongodb/src/operations/execute_operation.ts:289:24)
+      at executeOperation (node_modules/mongodb/src/operations/execute_operation.ts:119:12)
+      at Collection.createIndex (node_modules/mongodb/src/collection.ts:640:21)
+
+  ● Complaint retrieval › TC-48: sorting by oldest / newest orders by creation time
+
+    MongoServerError: An existing index has the same name as the requested index. When index names are not specified, they are auto generated and can cause conflicts. Please refer to our documentation. Requested index: { v: 2, key: { email: 1 }, name: "email_1", background: true }, existing index: { v: 2, unique: true, key: { email: 1 }, name: "email_1", background: true }
+
+      at Connection.sendCommand (node_modules/mongodb/src/cmap/connection.ts:559:17)
+      at Connection.command (node_modules/mongodb/src/cmap/connection.ts:633:22)
+      at Server.command (node_modules/mongodb/src/sdam/server.ts:350:21)
+      at tryOperation (node_modules/mongodb/src/operations/execute_operation.ts:289:24)
+      at executeOperation (node_modules/mongodb/src/operations/execute_operation.ts:119:12)
+      at Collection.createIndex (node_modules/mongodb/src/collection.ts:640:21)
+
+  ● Complaint retrieval › TC-50: malformed complaint ID returns 400
+
+    MongoServerError: An existing index has the same name as the requested index. When index names are not specified, they are auto generated and can cause conflicts. Please refer to our documentation. Requested index: { v: 2, key: { email: 1 }, name: "email_1", background: true }, existing index: { v: 2, unique: true, key: { email: 1 }, name: "email_1", background: true }
+
+      at Connection.sendCommand (node_modules/mongodb/src/cmap/connection.ts:559:17)
+      at Connection.command (node_modules/mongodb/src/cmap/connection.ts:633:22)
+      at Server.command (node_modules/mongodb/src/sdam/server.ts:350:21)
+      at tryOperation (node_modules/mongodb/src/operations/execute_operation.ts:289:24)
+      at executeOperation (node_modules/mongodb/src/operations/execute_operation.ts:119:12)
+      at Collection.createIndex (node_modules/mongodb/src/collection.ts:640:21)
+
+  ● Complaint retrieval › TC-51: well-formed but non-existent complaint ID returns 404
+
+    MongoServerError: An existing index has the same name as the requested index. When index names are not specified, they are auto generated and can cause conflicts. Please refer to our documentation. Requested index: { v: 2, key: { email: 1 }, name: "email_1", background: true }, existing index: { v: 2, unique: true, key: { email: 1 }, name: "email_1", background: true }
+
+      at Connection.sendCommand (node_modules/mongodb/src/cmap/connection.ts:559:17)
+      at Connection.command (node_modules/mongodb/src/cmap/connection.ts:633:22)
+      at Server.command (node_modules/mongodb/src/sdam/server.ts:350:21)
+      at tryOperation (node_modules/mongodb/src/operations/execute_operation.ts:289:24)
+      at executeOperation (node_modules/mongodb/src/operations/execute_operation.ts:119:12)
+      at Collection.createIndex (node_modules/mongodb/src/collection.ts:640:21)
+
+  ● Complaint retrieval › TC-64: overdue flag is recalculated and persisted when complaints are read
+
+    MongoServerError: An existing index has the same name as the requested index. When index names are not specified, they are auto generated and can cause conflicts. Please refer to our documentation. Requested index: { v: 2, key: { email: 1 }, name: "email_1", background: true }, existing index: { v: 2, unique: true, key: { email: 1 }, name: "email_1", background: true }
+
+      at Connection.sendCommand (node_modules/mongodb/src/cmap/connection.ts:559:17)
+      at Connection.command (node_modules/mongodb/src/cmap/connection.ts:633:22)
+      at Server.command (node_modules/mongodb/src/sdam/server.ts:350:21)
+      at tryOperation (node_modules/mongodb/src/operations/execute_operation.ts:289:24)
+      at executeOperation (node_modules/mongodb/src/operations/execute_operation.ts:119:12)
+      at Collection.createIndex (node_modules/mongodb/src/collection.ts:640:21)
+
+  ● Status workflow and ordering › TC-21: SUBMITTED -> UNDER_PROGRESS
+
+    MongoServerError: An existing index has the same name as the requested index. When index names are not specified, they are auto generated and can cause conflicts. Please refer to our documentation. Requested index: { v: 2, key: { email: 1 }, name: "email_1", background: true }, existing index: { v: 2, unique: true, key: { email: 1 }, name: "email_1", background: true }
+
+      at Connection.sendCommand (node_modules/mongodb/src/cmap/connection.ts:559:17)
+      at Connection.command (node_modules/mongodb/src/cmap/connection.ts:633:22)
+      at Server.command (node_modules/mongodb/src/sdam/server.ts:350:21)
+      at tryOperation (node_modules/mongodb/src/operations/execute_operation.ts:289:24)
+      at executeOperation (node_modules/mongodb/src/operations/execute_operation.ts:119:12)
+      at Collection.createIndex (node_modules/mongodb/src/collection.ts:640:21)
+
+  ● Status workflow and ordering › TC-22: UNDER_PROGRESS -> RESOLVED sets resolvedAt and clears overdue
+
+    MongoServerError: An existing index has the same name as the requested index. When index names are not specified, they are auto generated and can cause conflicts. Please refer to our documentation. Requested index: { v: 2, key: { email: 1 }, name: "email_1", background: true }, existing index: { v: 2, unique: true, key: { email: 1 }, name: "email_1", background: true }
+
+      at Connection.sendCommand (node_modules/mongodb/src/cmap/connection.ts:559:17)
+      at Connection.command (node_modules/mongodb/src/cmap/connection.ts:633:22)
+      at Server.command (node_modules/mongodb/src/sdam/server.ts:350:21)
+      at tryOperation (node_modules/mongodb/src/operations/execute_operation.ts:289:24)
+      at executeOperation (node_modules/mongodb/src/operations/execute_operation.ts:119:12)
+      at Collection.createIndex (node_modules/mongodb/src/collection.ts:640:21)
+
+  ● Status workflow and ordering › TC-23: RESOLVED -> SUBMITTED is rejected (terminal state)
+
+    MongoServerError: An existing index has the same name as the requested index. When index names are not specified, they are auto generated and can cause conflicts. Please refer to our documentation. Requested index: { v: 2, key: { email: 1 }, name: "email_1", background: true }, existing index: { v: 2, unique: true, key: { email: 1 }, name: "email_1", background: true }
+
+      at Connection.sendCommand (node_modules/mongodb/src/cmap/connection.ts:559:17)
+      at Connection.command (node_modules/mongodb/src/cmap/connection.ts:633:22)
+      at Server.command (node_modules/mongodb/src/sdam/server.ts:350:21)
+      at tryOperation (node_modules/mongodb/src/operations/execute_operation.ts:289:24)
+      at executeOperation (node_modules/mongodb/src/operations/execute_operation.ts:119:12)
+      at Collection.createIndex (node_modules/mongodb/src/collection.ts:640:21)
+
+  ● Status workflow and ordering › TC-52: SUBMITTED -> RESOLVED directly is allowed (SRS BR-05)
+
+    MongoServerError: An existing index has the same name as the requested index. When index names are not specified, they are auto generated and can cause conflicts. Please refer to our documentation. Requested index: { v: 2, key: { email: 1 }, name: "email_1", background: true }, existing index: { v: 2, unique: true, key: { email: 1 }, name: "email_1", background: true }
+
+      at Connection.sendCommand (node_modules/mongodb/src/cmap/connection.ts:559:17)
+      at Connection.command (node_modules/mongodb/src/cmap/connection.ts:633:22)
+      at Server.command (node_modules/mongodb/src/sdam/server.ts:350:21)
+      at tryOperation (node_modules/mongodb/src/operations/execute_operation.ts:289:24)
+      at executeOperation (node_modules/mongodb/src/operations/execute_operation.ts:119:12)
+      at Collection.createIndex (node_modules/mongodb/src/collection.ts:640:21)
+
+  ● Status workflow and ordering › TC-49: unknown status value in the request is rejected
+
+    MongoServerError: An existing index has the same name as the requested index. When index names are not specified, they are auto generated and can cause conflicts. Please refer to our documentation. Requested index: { v: 2, key: { email: 1 }, name: "email_1", background: true }, existing index: { v: 2, unique: true, key: { email: 1 }, name: "email_1", background: true }
+
+      at Connection.sendCommand (node_modules/mongodb/src/cmap/connection.ts:559:17)
+      at Connection.command (node_modules/mongodb/src/cmap/connection.ts:633:22)
+      at Server.command (node_modules/mongodb/src/sdam/server.ts:350:21)
+      at tryOperation (node_modules/mongodb/src/operations/execute_operation.ts:289:24)
+      at executeOperation (node_modules/mongodb/src/operations/execute_operation.ts:119:12)
+      at Collection.createIndex (node_modules/mongodb/src/collection.ts:640:21)
+
+  ● Status workflow and ordering › TC-65: UNDER_PROGRESS -> SUBMITTED (backwards) is rejected
+
+    MongoServerError: An existing index has the same name as the requested index. When index names are not specified, they are auto generated and can cause conflicts. Please refer to our documentation. Requested index: { v: 2, key: { email: 1 }, name: "email_1", background: true }, existing index: { v: 2, unique: true, key: { email: 1 }, name: "email_1", background: true }
+
+      at Connection.sendCommand (node_modules/mongodb/src/cmap/connection.ts:559:17)
+      at Connection.command (node_modules/mongodb/src/cmap/connection.ts:633:22)
+      at Server.command (node_modules/mongodb/src/sdam/server.ts:350:21)
+      at tryOperation (node_modules/mongodb/src/operations/execute_operation.ts:289:24)
+      at executeOperation (node_modules/mongodb/src/operations/execute_operation.ts:119:12)
+      at Collection.createIndex (node_modules/mongodb/src/collection.ts:640:21)
+
+  ● Status workflow and ordering › TC-24: warden moves a complaint up (priorityOrder swapped with neighbour)
+
+    MongoServerError: An existing index has the same name as the requested index. When index names are not specified, they are auto generated and can cause conflicts. Please refer to our documentation. Requested index: { v: 2, key: { email: 1 }, name: "email_1", background: true }, existing index: { v: 2, unique: true, key: { email: 1 }, name: "email_1", background: true }
+
+      at Connection.sendCommand (node_modules/mongodb/src/cmap/connection.ts:559:17)
+      at Connection.command (node_modules/mongodb/src/cmap/connection.ts:633:22)
+      at Server.command (node_modules/mongodb/src/sdam/server.ts:350:21)
+      at tryOperation (node_modules/mongodb/src/operations/execute_operation.ts:289:24)
+      at executeOperation (node_modules/mongodb/src/operations/execute_operation.ts:119:12)
+      at Collection.createIndex (node_modules/mongodb/src/collection.ts:640:21)
+
+  ● Status workflow and ordering › TC-53: moving the top complaint up is a no-op
+
+    MongoServerError: An existing index has the same name as the requested index. When index names are not specified, they are auto generated and can cause conflicts. Please refer to our documentation. Requested index: { v: 2, key: { email: 1 }, name: "email_1", background: true }, existing index: { v: 2, unique: true, key: { email: 1 }, name: "email_1", background: true }
+
+      at Connection.sendCommand (node_modules/mongodb/src/cmap/connection.ts:559:17)
+      at Connection.command (node_modules/mongodb/src/cmap/connection.ts:633:22)
+      at Server.command (node_modules/mongodb/src/sdam/server.ts:350:21)
+      at tryOperation (node_modules/mongodb/src/operations/execute_operation.ts:289:24)
+      at executeOperation (node_modules/mongodb/src/operations/execute_operation.ts:119:12)
+      at Collection.createIndex (node_modules/mongodb/src/collection.ts:640:21)
+
+  ● Status workflow and ordering › TC-54: reorder with an invalid direction is rejected
+
+    MongoServerError: An existing index has the same name as the requested index. When index names are not specified, they are auto generated and can cause conflicts. Please refer to our documentation. Requested index: { v: 2, key: { email: 1 }, name: "email_1", background: true }, existing index: { v: 2, unique: true, key: { email: 1 }, name: "email_1", background: true }
+
+      at Connection.sendCommand (node_modules/mongodb/src/cmap/connection.ts:559:17)
+      at Connection.command (node_modules/mongodb/src/cmap/connection.ts:633:22)
+      at Server.command (node_modules/mongodb/src/sdam/server.ts:350:21)
+      at tryOperation (node_modules/mongodb/src/operations/execute_operation.ts:289:24)
+      at executeOperation (node_modules/mongodb/src/operations/execute_operation.ts:119:12)
+      at Collection.createIndex (node_modules/mongodb/src/collection.ts:640:21)
+
+(node:10856) [MONGOOSE] Warning: Duplicate schema index on {"email":1} found. This is often due to declaring an index using both "index: true" and "schema.index()". Please remove the duplicate index definition.
+(node:10856) [MONGOOSE] Warning: Duplicate schema index on {"registrationNumber":1} found. This is often due to declaring an index using both "index: true" and "schema.index()". Please remove the duplicate index definition.
+FAIL tests/integration/auth.test.js
+  Authentication
+    × TC-01: register a new resident with valid details
+    × TC-02: register with a duplicate email
+    × TC-03: register with a duplicate registration number
+    × TC-04: register with a password shorter than 6 characters
+    × TC-05: login with correct credentials
+    × TC-06: login with an incorrect password (1 ms)
+    × TC-07: access a protected route with no token
+    × TC-08: access a protected route with a malformed/invalid token
+    × TC-33: client-supplied role is ignored on registration (no privilege escalation)
+    × TC-34: register with a missing required field
+    × TC-35: register with an invalid email format
+    × TC-36: login with an unregistered email gives the same generic error
+    × TC-37: GET /api/auth/me with a valid token returns the user without password
+    × TC-38: password is stored hashed, never as plain text
+    × TC-39: seeded warden can log in and receives role 'warden'
+    × TC-40: unknown API route returns 404 in the standard error shape (1 ms)
+    × TC-61: token for a deleted user is rejected
+    × TC-62: an expired token is rejected
+
+  ● Authentication › TC-01: register a new resident with valid details
+
+    MongoServerError: An existing index has the same name as the requested index. When index names are not specified, they are auto generated and can cause conflicts. Please refer to our documentation. Requested index: { v: 2, key: { email: 1 }, name: "email_1", background: true }, existing index: { v: 2, unique: true, key: { email: 1 }, name: "email_1", background: true }
+
+      at Connection.sendCommand (node_modules/mongodb/src/cmap/connection.ts:559:17)
+      at Connection.command (node_modules/mongodb/src/cmap/connection.ts:633:22)
+      at Server.command (node_modules/mongodb/src/sdam/server.ts:350:21)
+      at tryOperation (node_modules/mongodb/src/operations/execute_operation.ts:289:24)
+      at executeOperation (node_modules/mongodb/src/operations/execute_operation.ts:119:12)
+      at Collection.createIndex (node_modules/mongodb/src/collection.ts:640:21)
+
+  ● Authentication › TC-02: register with a duplicate email
+
+    MongoServerError: An existing index has the same name as the requested index. When index names are not specified, they are auto generated and can cause conflicts. Please refer to our documentation. Requested index: { v: 2, key: { email: 1 }, name: "email_1", background: true }, existing index: { v: 2, unique: true, key: { email: 1 }, name: "email_1", background: true }
+
+      at Connection.sendCommand (node_modules/mongodb/src/cmap/connection.ts:559:17)
+      at Connection.command (node_modules/mongodb/src/cmap/connection.ts:633:22)
+      at Server.command (node_modules/mongodb/src/sdam/server.ts:350:21)
+      at tryOperation (node_modules/mongodb/src/operations/execute_operation.ts:289:24)
+      at executeOperation (node_modules/mongodb/src/operations/execute_operation.ts:119:12)
+      at Collection.createIndex (node_modules/mongodb/src/collection.ts:640:21)
+
+  ● Authentication › TC-03: register with a duplicate registration number
+
+    MongoServerError: An existing index has the same name as the requested index. When index names are not specified, they are auto generated and can cause conflicts. Please refer to our documentation. Requested index: { v: 2, key: { email: 1 }, name: "email_1", background: true }, existing index: { v: 2, unique: true, key: { email: 1 }, name: "email_1", background: true }
+
+      at Connection.sendCommand (node_modules/mongodb/src/cmap/connection.ts:559:17)
+      at Connection.command (node_modules/mongodb/src/cmap/connection.ts:633:22)
+      at Server.command (node_modules/mongodb/src/sdam/server.ts:350:21)
+      at tryOperation (node_modules/mongodb/src/operations/execute_operation.ts:289:24)
+      at executeOperation (node_modules/mongodb/src/operations/execute_operation.ts:119:12)
+      at Collection.createIndex (node_modules/mongodb/src/collection.ts:640:21)
+
+  ● Authentication › TC-04: register with a password shorter than 6 characters
+
+    MongoServerError: An existing index has the same name as the requested index. When index names are not specified, they are auto generated and can cause conflicts. Please refer to our documentation. Requested index: { v: 2, key: { email: 1 }, name: "email_1", background: true }, existing index: { v: 2, unique: true, key: { email: 1 }, name: "email_1", background: true }
+
+      at Connection.sendCommand (node_modules/mongodb/src/cmap/connection.ts:559:17)
+      at Connection.command (node_modules/mongodb/src/cmap/connection.ts:633:22)
+      at Server.command (node_modules/mongodb/src/sdam/server.ts:350:21)
+      at tryOperation (node_modules/mongodb/src/operations/execute_operation.ts:289:24)
+      at executeOperation (node_modules/mongodb/src/operations/execute_operation.ts:119:12)
+      at Collection.createIndex (node_modules/mongodb/src/collection.ts:640:21)
+
+  ● Authentication › TC-05: login with correct credentials
+
+    MongoServerError: An existing index has the same name as the requested index. When index names are not specified, they are auto generated and can cause conflicts. Please refer to our documentation. Requested index: { v: 2, key: { email: 1 }, name: "email_1", background: true }, existing index: { v: 2, unique: true, key: { email: 1 }, name: "email_1", background: true }
+
+      at Connection.sendCommand (node_modules/mongodb/src/cmap/connection.ts:559:17)
+      at Connection.command (node_modules/mongodb/src/cmap/connection.ts:633:22)
+      at Server.command (node_modules/mongodb/src/sdam/server.ts:350:21)
+      at tryOperation (node_modules/mongodb/src/operations/execute_operation.ts:289:24)
+      at executeOperation (node_modules/mongodb/src/operations/execute_operation.ts:119:12)
+      at Collection.createIndex (node_modules/mongodb/src/collection.ts:640:21)
+
+  ● Authentication › TC-06: login with an incorrect password
+
+    MongoServerError: An existing index has the same name as the requested index. When index names are not specified, they are auto generated and can cause conflicts. Please refer to our documentation. Requested index: { v: 2, key: { email: 1 }, name: "email_1", background: true }, existing index: { v: 2, unique: true, key: { email: 1 }, name: "email_1", background: true }
+
+      at Connection.sendCommand (node_modules/mongodb/src/cmap/connection.ts:559:17)
+      at Connection.command (node_modules/mongodb/src/cmap/connection.ts:633:22)
+      at Server.command (node_modules/mongodb/src/sdam/server.ts:350:21)
+      at tryOperation (node_modules/mongodb/src/operations/execute_operation.ts:289:24)
+      at executeOperation (node_modules/mongodb/src/operations/execute_operation.ts:119:12)
+      at Collection.createIndex (node_modules/mongodb/src/collection.ts:640:21)
+
+  ● Authentication › TC-07: access a protected route with no token
+
+    MongoServerError: An existing index has the same name as the requested index. When index names are not specified, they are auto generated and can cause conflicts. Please refer to our documentation. Requested index: { v: 2, key: { email: 1 }, name: "email_1", background: true }, existing index: { v: 2, unique: true, key: { email: 1 }, name: "email_1", background: true }
+
+      at Connection.sendCommand (node_modules/mongodb/src/cmap/connection.ts:559:17)
+      at Connection.command (node_modules/mongodb/src/cmap/connection.ts:633:22)
+      at Server.command (node_modules/mongodb/src/sdam/server.ts:350:21)
+      at tryOperation (node_modules/mongodb/src/operations/execute_operation.ts:289:24)
+      at executeOperation (node_modules/mongodb/src/operations/execute_operation.ts:119:12)
+      at Collection.createIndex (node_modules/mongodb/src/collection.ts:640:21)
+
+  ● Authentication › TC-08: access a protected route with a malformed/invalid token
+
+    MongoServerError: An existing index has the same name as the requested index. When index names are not specified, they are auto generated and can cause conflicts. Please refer to our documentation. Requested index: { v: 2, key: { email: 1 }, name: "email_1", background: true }, existing index: { v: 2, unique: true, key: { email: 1 }, name: "email_1", background: true }
+
+      at Connection.sendCommand (node_modules/mongodb/src/cmap/connection.ts:559:17)
+      at Connection.command (node_modules/mongodb/src/cmap/connection.ts:633:22)
+      at Server.command (node_modules/mongodb/src/sdam/server.ts:350:21)
+      at tryOperation (node_modules/mongodb/src/operations/execute_operation.ts:289:24)
+      at executeOperation (node_modules/mongodb/src/operations/execute_operation.ts:119:12)
+      at Collection.createIndex (node_modules/mongodb/src/collection.ts:640:21)
+
+  ● Authentication › TC-33: client-supplied role is ignored on registration (no privilege escalation)
+
+    MongoServerError: An existing index has the same name as the requested index. When index names are not specified, they are auto generated and can cause conflicts. Please refer to our documentation. Requested index: { v: 2, key: { email: 1 }, name: "email_1", background: true }, existing index: { v: 2, unique: true, key: { email: 1 }, name: "email_1", background: true }
+
+      at Connection.sendCommand (node_modules/mongodb/src/cmap/connection.ts:559:17)
+      at Connection.command (node_modules/mongodb/src/cmap/connection.ts:633:22)
+      at Server.command (node_modules/mongodb/src/sdam/server.ts:350:21)
+      at tryOperation (node_modules/mongodb/src/operations/execute_operation.ts:289:24)
+      at executeOperation (node_modules/mongodb/src/operations/execute_operation.ts:119:12)
+      at Collection.createIndex (node_modules/mongodb/src/collection.ts:640:21)
+
+  ● Authentication › TC-34: register with a missing required field
+
+    MongoServerError: An existing index has the same name as the requested index. When index names are not specified, they are auto generated and can cause conflicts. Please refer to our documentation. Requested index: { v: 2, key: { email: 1 }, name: "email_1", background: true }, existing index: { v: 2, unique: true, key: { email: 1 }, name: "email_1", background: true }
+
+      at Connection.sendCommand (node_modules/mongodb/src/cmap/connection.ts:559:17)
+      at Connection.command (node_modules/mongodb/src/cmap/connection.ts:633:22)
+      at Server.command (node_modules/mongodb/src/sdam/server.ts:350:21)
+      at tryOperation (node_modules/mongodb/src/operations/execute_operation.ts:289:24)
+      at executeOperation (node_modules/mongodb/src/operations/execute_operation.ts:119:12)
+      at Collection.createIndex (node_modules/mongodb/src/collection.ts:640:21)
+
+  ● Authentication › TC-35: register with an invalid email format
+
+    MongoServerError: An existing index has the same name as the requested index. When index names are not specified, they are auto generated and can cause conflicts. Please refer to our documentation. Requested index: { v: 2, key: { email: 1 }, name: "email_1", background: true }, existing index: { v: 2, unique: true, key: { email: 1 }, name: "email_1", background: true }
+
+      at Connection.sendCommand (node_modules/mongodb/src/cmap/connection.ts:559:17)
+      at Connection.command (node_modules/mongodb/src/cmap/connection.ts:633:22)
+      at Server.command (node_modules/mongodb/src/sdam/server.ts:350:21)
+      at tryOperation (node_modules/mongodb/src/operations/execute_operation.ts:289:24)
+      at executeOperation (node_modules/mongodb/src/operations/execute_operation.ts:119:12)
+      at Collection.createIndex (node_modules/mongodb/src/collection.ts:640:21)
+
+  ● Authentication › TC-36: login with an unregistered email gives the same generic error
+
+    MongoServerError: An existing index has the same name as the requested index. When index names are not specified, they are auto generated and can cause conflicts. Please refer to our documentation. Requested index: { v: 2, key: { email: 1 }, name: "email_1", background: true }, existing index: { v: 2, unique: true, key: { email: 1 }, name: "email_1", background: true }
+
+      at Connection.sendCommand (node_modules/mongodb/src/cmap/connection.ts:559:17)
+      at Connection.command (node_modules/mongodb/src/cmap/connection.ts:633:22)
+      at Server.command (node_modules/mongodb/src/sdam/server.ts:350:21)
+      at tryOperation (node_modules/mongodb/src/operations/execute_operation.ts:289:24)
+      at executeOperation (node_modules/mongodb/src/operations/execute_operation.ts:119:12)
+      at Collection.createIndex (node_modules/mongodb/src/collection.ts:640:21)
+
+  ● Authentication › TC-37: GET /api/auth/me with a valid token returns the user without password
+
+    MongoServerError: An existing index has the same name as the requested index. When index names are not specified, they are auto generated and can cause conflicts. Please refer to our documentation. Requested index: { v: 2, key: { email: 1 }, name: "email_1", background: true }, existing index: { v: 2, unique: true, key: { email: 1 }, name: "email_1", background: true }
+
+      at Connection.sendCommand (node_modules/mongodb/src/cmap/connection.ts:559:17)
+      at Connection.command (node_modules/mongodb/src/cmap/connection.ts:633:22)
+      at Server.command (node_modules/mongodb/src/sdam/server.ts:350:21)
+      at tryOperation (node_modules/mongodb/src/operations/execute_operation.ts:289:24)
+      at executeOperation (node_modules/mongodb/src/operations/execute_operation.ts:119:12)
+      at Collection.createIndex (node_modules/mongodb/src/collection.ts:640:21)
+
+  ● Authentication › TC-38: password is stored hashed, never as plain text
+
+    MongoServerError: An existing index has the same name as the requested index. When index names are not specified, they are auto generated and can cause conflicts. Please refer to our documentation. Requested index: { v: 2, key: { email: 1 }, name: "email_1", background: true }, existing index: { v: 2, unique: true, key: { email: 1 }, name: "email_1", background: true }
+
+      at Connection.sendCommand (node_modules/mongodb/src/cmap/connection.ts:559:17)
+      at Connection.command (node_modules/mongodb/src/cmap/connection.ts:633:22)
+      at Server.command (node_modules/mongodb/src/sdam/server.ts:350:21)
+      at tryOperation (node_modules/mongodb/src/operations/execute_operation.ts:289:24)
+      at executeOperation (node_modules/mongodb/src/operations/execute_operation.ts:119:12)
+      at Collection.createIndex (node_modules/mongodb/src/collection.ts:640:21)
+
+  ● Authentication › TC-39: seeded warden can log in and receives role 'warden'
+
+    MongoServerError: An existing index has the same name as the requested index. When index names are not specified, they are auto generated and can cause conflicts. Please refer to our documentation. Requested index: { v: 2, key: { email: 1 }, name: "email_1", background: true }, existing index: { v: 2, unique: true, key: { email: 1 }, name: "email_1", background: true }
+
+      at Connection.sendCommand (node_modules/mongodb/src/cmap/connection.ts:559:17)
+      at Connection.command (node_modules/mongodb/src/cmap/connection.ts:633:22)
+      at Server.command (node_modules/mongodb/src/sdam/server.ts:350:21)
+      at tryOperation (node_modules/mongodb/src/operations/execute_operation.ts:289:24)
+      at executeOperation (node_modules/mongodb/src/operations/execute_operation.ts:119:12)
+      at Collection.createIndex (node_modules/mongodb/src/collection.ts:640:21)
+
+  ● Authentication › TC-40: unknown API route returns 404 in the standard error shape
+
+    MongoServerError: An existing index has the same name as the requested index. When index names are not specified, they are auto generated and can cause conflicts. Please refer to our documentation. Requested index: { v: 2, key: { email: 1 }, name: "email_1", background: true }, existing index: { v: 2, unique: true, key: { email: 1 }, name: "email_1", background: true }
+
+      at Connection.sendCommand (node_modules/mongodb/src/cmap/connection.ts:559:17)
+      at Connection.command (node_modules/mongodb/src/cmap/connection.ts:633:22)
+      at Server.command (node_modules/mongodb/src/sdam/server.ts:350:21)
+      at tryOperation (node_modules/mongodb/src/operations/execute_operation.ts:289:24)
+      at executeOperation (node_modules/mongodb/src/operations/execute_operation.ts:119:12)
+      at Collection.createIndex (node_modules/mongodb/src/collection.ts:640:21)
+
+  ● Authentication › TC-61: token for a deleted user is rejected
+
+    MongoServerError: An existing index has the same name as the requested index. When index names are not specified, they are auto generated and can cause conflicts. Please refer to our documentation. Requested index: { v: 2, key: { email: 1 }, name: "email_1", background: true }, existing index: { v: 2, unique: true, key: { email: 1 }, name: "email_1", background: true }
+
+      at Connection.sendCommand (node_modules/mongodb/src/cmap/connection.ts:559:17)
+      at Connection.command (node_modules/mongodb/src/cmap/connection.ts:633:22)
+      at Server.command (node_modules/mongodb/src/sdam/server.ts:350:21)
+      at tryOperation (node_modules/mongodb/src/operations/execute_operation.ts:289:24)
+      at executeOperation (node_modules/mongodb/src/operations/execute_operation.ts:119:12)
+      at Collection.createIndex (node_modules/mongodb/src/collection.ts:640:21)
+
+  ● Authentication › TC-62: an expired token is rejected
+
+    MongoServerError: An existing index has the same name as the requested index. When index names are not specified, they are auto generated and can cause conflicts. Please refer to our documentation. Requested index: { v: 2, key: { email: 1 }, name: "email_1", background: true }, existing index: { v: 2, unique: true, key: { email: 1 }, name: "email_1", background: true }
+
+      at Connection.sendCommand (node_modules/mongodb/src/cmap/connection.ts:559:17)
+      at Connection.command (node_modules/mongodb/src/cmap/connection.ts:633:22)
+      at Server.command (node_modules/mongodb/src/sdam/server.ts:350:21)
+      at tryOperation (node_modules/mongodb/src/operations/execute_operation.ts:289:24)
+      at executeOperation (node_modules/mongodb/src/operations/execute_operation.ts:119:12)
+      at Collection.createIndex (node_modules/mongodb/src/collection.ts:640:21)
+
+(node:10856) [MONGOOSE] Warning: Duplicate schema index on {"email":1} found. This is often due to declaring an index using both "index: true" and "schema.index()". Please remove the duplicate index definition.
+(node:10856) [MONGOOSE] Warning: Duplicate schema index on {"registrationNumber":1} found. This is often due to declaring an index using both "index: true" and "schema.index()". Please remove the duplicate index definition.
+FAIL tests/integration/feedback_dashboard.test.js
+  Feedback
+    × TC-28: submit feedback on a resolved complaint
+    × TC-29: feedback on an unresolved complaint is rejected
+    × TC-30: second feedback on the same complaint is rejected (1 ms)
+    × TC-31: rating outside 1-5 is rejected
+    × TC-32: resident cannot give feedback on another resident's complaint
+    × TC-66: comment longer than 500 characters is rejected
+    × TC-67: warden can read feedback; resident can read own; other resident cannot
+    × TC-68: warden cannot submit feedback (resident-only)
+  Warden dashboard statistics
+    × TC-69: counts, overdue total and average resolution time are correct
+    × TC-70: dashboard with no complaints returns zeros and null average (1 ms)
+    × TC-71: resident cannot access the warden dashboard
+
+  ● Feedback › TC-28: submit feedback on a resolved complaint
+
+    MongoServerError: An existing index has the same name as the requested index. When index names are not specified, they are auto generated and can cause conflicts. Please refer to our documentation. Requested index: { v: 2, key: { email: 1 }, name: "email_1", background: true }, existing index: { v: 2, unique: true, key: { email: 1 }, name: "email_1", background: true }
+
+      at Connection.sendCommand (node_modules/mongodb/src/cmap/connection.ts:559:17)
+      at Connection.command (node_modules/mongodb/src/cmap/connection.ts:633:22)
+      at Server.command (node_modules/mongodb/src/sdam/server.ts:350:21)
+      at tryOperation (node_modules/mongodb/src/operations/execute_operation.ts:289:24)
+      at executeOperation (node_modules/mongodb/src/operations/execute_operation.ts:119:12)
+      at Collection.createIndex (node_modules/mongodb/src/collection.ts:640:21)
+
+  ● Feedback › TC-29: feedback on an unresolved complaint is rejected
+
+    MongoServerError: An existing index has the same name as the requested index. When index names are not specified, they are auto generated and can cause conflicts. Please refer to our documentation. Requested index: { v: 2, key: { email: 1 }, name: "email_1", background: true }, existing index: { v: 2, unique: true, key: { email: 1 }, name: "email_1", background: true }
+
+      at Connection.sendCommand (node_modules/mongodb/src/cmap/connection.ts:559:17)
+      at Connection.command (node_modules/mongodb/src/cmap/connection.ts:633:22)
+      at Server.command (node_modules/mongodb/src/sdam/server.ts:350:21)
+      at tryOperation (node_modules/mongodb/src/operations/execute_operation.ts:289:24)
+      at executeOperation (node_modules/mongodb/src/operations/execute_operation.ts:119:12)
+      at Collection.createIndex (node_modules/mongodb/src/collection.ts:640:21)
+
+  ● Feedback › TC-30: second feedback on the same complaint is rejected
+
+    MongoServerError: An existing index has the same name as the requested index. When index names are not specified, they are auto generated and can cause conflicts. Please refer to our documentation. Requested index: { v: 2, key: { email: 1 }, name: "email_1", background: true }, existing index: { v: 2, unique: true, key: { email: 1 }, name: "email_1", background: true }
+
+      at Connection.sendCommand (node_modules/mongodb/src/cmap/connection.ts:559:17)
+      at Connection.command (node_modules/mongodb/src/cmap/connection.ts:633:22)
+      at Server.command (node_modules/mongodb/src/sdam/server.ts:350:21)
+      at tryOperation (node_modules/mongodb/src/operations/execute_operation.ts:289:24)
+      at executeOperation (node_modules/mongodb/src/operations/execute_operation.ts:119:12)
+      at Collection.createIndex (node_modules/mongodb/src/collection.ts:640:21)
+
+  ● Feedback › TC-31: rating outside 1-5 is rejected
+
+    MongoServerError: An existing index has the same name as the requested index. When index names are not specified, they are auto generated and can cause conflicts. Please refer to our documentation. Requested index: { v: 2, key: { email: 1 }, name: "email_1", background: true }, existing index: { v: 2, unique: true, key: { email: 1 }, name: "email_1", background: true }
+
+      at Connection.sendCommand (node_modules/mongodb/src/cmap/connection.ts:559:17)
+      at Connection.command (node_modules/mongodb/src/cmap/connection.ts:633:22)
+      at Server.command (node_modules/mongodb/src/sdam/server.ts:350:21)
+      at tryOperation (node_modules/mongodb/src/operations/execute_operation.ts:289:24)
+      at executeOperation (node_modules/mongodb/src/operations/execute_operation.ts:119:12)
+      at Collection.createIndex (node_modules/mongodb/src/collection.ts:640:21)
+
+  ● Feedback › TC-32: resident cannot give feedback on another resident's complaint
+
+    MongoServerError: An existing index has the same name as the requested index. When index names are not specified, they are auto generated and can cause conflicts. Please refer to our documentation. Requested index: { v: 2, key: { email: 1 }, name: "email_1", background: true }, existing index: { v: 2, unique: true, key: { email: 1 }, name: "email_1", background: true }
+
+      at Connection.sendCommand (node_modules/mongodb/src/cmap/connection.ts:559:17)
+      at Connection.command (node_modules/mongodb/src/cmap/connection.ts:633:22)
+      at Server.command (node_modules/mongodb/src/sdam/server.ts:350:21)
+      at tryOperation (node_modules/mongodb/src/operations/execute_operation.ts:289:24)
+      at executeOperation (node_modules/mongodb/src/operations/execute_operation.ts:119:12)
+      at Collection.createIndex (node_modules/mongodb/src/collection.ts:640:21)
+
+  ● Feedback › TC-66: comment longer than 500 characters is rejected
+
+    MongoServerError: An existing index has the same name as the requested index. When index names are not specified, they are auto generated and can cause conflicts. Please refer to our documentation. Requested index: { v: 2, key: { email: 1 }, name: "email_1", background: true }, existing index: { v: 2, unique: true, key: { email: 1 }, name: "email_1", background: true }
+
+      at Connection.sendCommand (node_modules/mongodb/src/cmap/connection.ts:559:17)
+      at Connection.command (node_modules/mongodb/src/cmap/connection.ts:633:22)
+      at Server.command (node_modules/mongodb/src/sdam/server.ts:350:21)
+      at tryOperation (node_modules/mongodb/src/operations/execute_operation.ts:289:24)
+      at executeOperation (node_modules/mongodb/src/operations/execute_operation.ts:119:12)
+      at Collection.createIndex (node_modules/mongodb/src/collection.ts:640:21)
+
+  ● Feedback › TC-67: warden can read feedback; resident can read own; other resident cannot
+
+    MongoServerError: An existing index has the same name as the requested index. When index names are not specified, they are auto generated and can cause conflicts. Please refer to our documentation. Requested index: { v: 2, key: { email: 1 }, name: "email_1", background: true }, existing index: { v: 2, unique: true, key: { email: 1 }, name: "email_1", background: true }
+
+      at Connection.sendCommand (node_modules/mongodb/src/cmap/connection.ts:559:17)
+      at Connection.command (node_modules/mongodb/src/cmap/connection.ts:633:22)
+      at Server.command (node_modules/mongodb/src/sdam/server.ts:350:21)
+      at tryOperation (node_modules/mongodb/src/operations/execute_operation.ts:289:24)
+      at executeOperation (node_modules/mongodb/src/operations/execute_operation.ts:119:12)
+      at Collection.createIndex (node_modules/mongodb/src/collection.ts:640:21)
+
+  ● Feedback › TC-68: warden cannot submit feedback (resident-only)
+
+    MongoServerError: An existing index has the same name as the requested index. When index names are not specified, they are auto generated and can cause conflicts. Please refer to our documentation. Requested index: { v: 2, key: { email: 1 }, name: "email_1", background: true }, existing index: { v: 2, unique: true, key: { email: 1 }, name: "email_1", background: true }
+
+      at Connection.sendCommand (node_modules/mongodb/src/cmap/connection.ts:559:17)
+      at Connection.command (node_modules/mongodb/src/cmap/connection.ts:633:22)
+      at Server.command (node_modules/mongodb/src/sdam/server.ts:350:21)
+      at tryOperation (node_modules/mongodb/src/operations/execute_operation.ts:289:24)
+      at executeOperation (node_modules/mongodb/src/operations/execute_operation.ts:119:12)
+      at Collection.createIndex (node_modules/mongodb/src/collection.ts:640:21)
+
+  ● Warden dashboard statistics › TC-69: counts, overdue total and average resolution time are correct
+
+    MongoServerError: An existing index has the same name as the requested index. When index names are not specified, they are auto generated and can cause conflicts. Please refer to our documentation. Requested index: { v: 2, key: { email: 1 }, name: "email_1", background: true }, existing index: { v: 2, unique: true, key: { email: 1 }, name: "email_1", background: true }
+
+      at Connection.sendCommand (node_modules/mongodb/src/cmap/connection.ts:559:17)
+      at Connection.command (node_modules/mongodb/src/cmap/connection.ts:633:22)
+      at Server.command (node_modules/mongodb/src/sdam/server.ts:350:21)
+      at tryOperation (node_modules/mongodb/src/operations/execute_operation.ts:289:24)
+      at executeOperation (node_modules/mongodb/src/operations/execute_operation.ts:119:12)
+      at Collection.createIndex (node_modules/mongodb/src/collection.ts:640:21)
+
+  ● Warden dashboard statistics › TC-70: dashboard with no complaints returns zeros and null average
+
+    MongoServerError: An existing index has the same name as the requested index. When index names are not specified, they are auto generated and can cause conflicts. Please refer to our documentation. Requested index: { v: 2, key: { email: 1 }, name: "email_1", background: true }, existing index: { v: 2, unique: true, key: { email: 1 }, name: "email_1", background: true }
+
+      at Connection.sendCommand (node_modules/mongodb/src/cmap/connection.ts:559:17)
+      at Connection.command (node_modules/mongodb/src/cmap/connection.ts:633:22)
+      at Server.command (node_modules/mongodb/src/sdam/server.ts:350:21)
+      at tryOperation (node_modules/mongodb/src/operations/execute_operation.ts:289:24)
+      at executeOperation (node_modules/mongodb/src/operations/execute_operation.ts:119:12)
+      at Collection.createIndex (node_modules/mongodb/src/collection.ts:640:21)
+
+  ● Warden dashboard statistics › TC-71: resident cannot access the warden dashboard
+
+    MongoServerError: An existing index has the same name as the requested index. When index names are not specified, they are auto generated and can cause conflicts. Please refer to our documentation. Requested index: { v: 2, key: { email: 1 }, name: "email_1", background: true }, existing index: { v: 2, unique: true, key: { email: 1 }, name: "email_1", background: true }
+
+      at Connection.sendCommand (node_modules/mongodb/src/cmap/connection.ts:559:17)
+      at Connection.command (node_modules/mongodb/src/cmap/connection.ts:633:22)
+      at Server.command (node_modules/mongodb/src/sdam/server.ts:350:21)
+      at tryOperation (node_modules/mongodb/src/operations/execute_operation.ts:289:24)
+      at executeOperation (node_modules/mongodb/src/operations/execute_operation.ts:119:12)
+      at Collection.createIndex (node_modules/mongodb/src/collection.ts:640:21)
+
+PASS tests/unit/utils.test.js
+  Utilities (unit)
+    √ TC-57: JWT contains user id and role and an expiry (12 ms)
+    √ TC-58: authorize() blocks a role that is not allowed (403) (2 ms)
+    √ TC-59: authorize() allows a permitted role and calls next() (1 ms)
+    √ TC-60: success()/error() helpers return the standard response shape (1 ms)
+
+PASS tests/unit/overdue.test.js
+  Overdue logic (unit)
+    √ TC-25: complaint created 5 hours ago is not overdue (1 ms)
+    √ TC-26: unresolved complaint older than 48 hours is overdue (1 ms)
+    √ TC-27: resolved complaint older than 48 hours is never overdue (1 ms)
+    √ TC-55: boundary - 47h59m not overdue, 48h01m overdue
+    √ TC-56: threshold constant equals 48 hours in milliseconds
+
+Test Suites: 3 failed, 2 passed, 5 total
+Tests:       61 failed, 9 passed, 70 total
+Snapshots:   0 total
+Time:        7.777 s
+Test results written to: tests\evidence\jest-results.json
