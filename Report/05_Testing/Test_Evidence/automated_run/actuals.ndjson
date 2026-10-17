@@ -1,0 +1,70 @@
+{"id":"TC-10","actual":"HTTP 403 - Forbidden. Role 'resident' cannot access this resource."}
+{"id":"TC-11","actual":"HTTP 403 - Forbidden. This complaint does not belong to you."}
+{"id":"TC-12","actual":"HTTP 403 - Forbidden. Role 'resident' cannot access this resource."}
+{"id":"TC-13","actual":"HTTP 403 - Forbidden. Role 'resident' cannot access this resource."}
+{"id":"TC-14","actual":"HTTP 200 - Complaints fetched.; complaints returned: 2"}
+{"id":"TC-43","actual":"HTTP 403 - Forbidden. Role 'warden' cannot access this resource."}
+{"id":"TC-63","actual":"HTTP 401 - Not authorized. No token provided."}
+{"id":"TC-15","actual":"HTTP 201 - Complaint submitted successfully.; status=SUBMITTED; complaintId=HF-0001; imagePath=null"}
+{"id":"TC-16","actual":"HTTP 201 - Complaint submitted successfully.; imagePath=/uploads/complaint-1792211575805-865560279.png"}
+{"id":"TC-17","actual":"HTTP 400 - Description is required and must be at least 5 characters."}
+{"id":"TC-18","actual":"HTTP 400 - Image file is too large."}
+{"id":"TC-19","actual":"HTTP 400 - Invalid file type. Only JPG, PNG and WEBP images are allowed."}
+{"id":"TC-41","actual":"HF-0001, HF-0002"}
+{"id":"TC-42","actual":"HTTP 201 - Complaint submitted successfully.; residentName=Resident 40; roomNumber=A-140; status=SUBMITTED"}
+{"id":"TC-20","actual":"HTTP 200 - Complaints fetched.; returned 2, all own: true"}
+{"id":"TC-44","actual":"HTTP 200 - Complaints fetched.; returned 1"}
+{"id":"TC-45","actual":"HTTP 200 - Complaints fetched.; overdue returned 1"}
+{"id":"TC-46","actual":"HTTP 200 - Complaints fetched.; returned 1"}
+{"id":"TC-47","actual":"HTTP 400 - Invalid status filter."}
+{"id":"TC-48","actual":"oldest-first order correct: true; newest-first order correct: true"}
+{"id":"TC-50","actual":"HTTP 400 - Invalid ID format."}
+{"id":"TC-51","actual":"HTTP 404 - Complaint not found."}
+{"id":"TC-64","actual":"API isOverdue=true; persisted=true"}
+{"id":"TC-21","actual":"HTTP 200 - Status updated.; status=UNDER_PROGRESS"}
+{"id":"TC-22","actual":"HTTP 200 - Status updated.; status=RESOLVED; resolvedAt set=true; isOverdue=false"}
+{"id":"TC-23","actual":"HTTP 400 - Invalid status transition from RESOLVED to SUBMITTED."}
+{"id":"TC-52","actual":"HTTP 200 - Status updated.; status=RESOLVED"}
+{"id":"TC-49","actual":"HTTP 400 - A valid status is required."}
+{"id":"TC-65","actual":"HTTP 400 - Invalid status transition from UNDER_PROGRESS to SUBMITTED."}
+{"id":"TC-24","actual":"HTTP 200 - Complaint reordered.; a<->b swapped: true"}
+{"id":"TC-53","actual":"HTTP 200 - Complaint reordered.; priorityOrder unchanged: true"}
+{"id":"TC-54","actual":"HTTP 400 - Direction must be 'up' or 'down'."}
+{"id":"TC-28","actual":"HTTP 201 - Feedback submitted.; rating=4; complaint.feedbackSubmitted=true"}
+{"id":"TC-29","actual":"HTTP 400 - Feedback can only be submitted after the complaint is resolved."}
+{"id":"TC-30","actual":"HTTP 409 - Feedback has already been submitted for this complaint.; feedback docs in DB: 1"}
+{"id":"TC-31","actual":"rating 7 -> HTTP 400 - Rating must be between 1 and 5.; rating 0 -> HTTP 400 - Rating must be between 1 and 5."}
+{"id":"TC-32","actual":"HTTP 403 - Forbidden. You can only give feedback on your own complaints."}
+{"id":"TC-66","actual":"HTTP 400 - Validation failed."}
+{"id":"TC-67","actual":"warden 200, owner 200, other resident 403"}
+{"id":"TC-68","actual":"HTTP 403 - Forbidden. Role 'warden' cannot access this resource."}
+{"id":"TC-69","actual":"HTTP 200 - Dashboard stats fetched.; total=5, submitted=2, underProgress=1, resolved=2, overdue=1, avgResolutionHours=20, resolvedPerDay entries=14"}
+{"id":"TC-70","actual":"HTTP 200 - Dashboard stats fetched.; total=0; avgResolutionHours=null"}
+{"id":"TC-71","actual":"HTTP 403 - Forbidden. Role 'resident' cannot access this resource."}
+{"id":"TC-01","actual":"HTTP 201 - Registration successful.; token returned: true; role=resident"}
+{"id":"TC-02","actual":"HTTP 409 - Email is already registered."}
+{"id":"TC-03","actual":"HTTP 409 - Registration number is already in use."}
+{"id":"TC-04","actual":"HTTP 400 - Password must be at least 6 characters."}
+{"id":"TC-05","actual":"HTTP 200 - Login successful.; token returned: true"}
+{"id":"TC-06","actual":"HTTP 401 - Invalid email or password."}
+{"id":"TC-07","actual":"HTTP 401 - Not authorized. No token provided."}
+{"id":"TC-08","actual":"HTTP 401 - Not authorized. Invalid or expired token."}
+{"id":"TC-33","actual":"HTTP 201 - Registration successful.; role assigned = resident"}
+{"id":"TC-34","actual":"HTTP 400 - All fields are required."}
+{"id":"TC-35","actual":"HTTP 400 - Invalid email format."}
+{"id":"TC-36","actual":"HTTP 401 - Invalid email or password."}
+{"id":"TC-37","actual":"HTTP 200 - Current user fetched.; email=resident3@dormfix.test; password field present: false"}
+{"id":"TC-38","actual":"stored value starts with \"$2a$\" (bcrypt); equals plaintext: false"}
+{"id":"TC-39","actual":"HTTP 200 - Login successful.; role=warden"}
+{"id":"TC-40","actual":"HTTP 404 - Route not found: /api/does-not-exist"}
+{"id":"TC-61","actual":"HTTP 401 - Not authorized. User no longer exists."}
+{"id":"TC-62","actual":"HTTP 401 - Not authorized. Invalid or expired token."}
+{"id":"TC-57","actual":"payload keys: id, role, iat, exp; role=resident"}
+{"id":"TC-58","actual":"status 403; next called: false"}
+{"id":"TC-59","actual":"next called: true"}
+{"id":"TC-60","actual":"success -> {\"success\":true,\"message\":\"ok\",\"data\":{\"x\":1}}; error -> {\"success\":false,\"message\":\"bad\",\"errors\":[\"e1\"]}"}
+{"id":"TC-25","actual":"isOverdue = false"}
+{"id":"TC-26","actual":"isOverdue = true"}
+{"id":"TC-27","actual":"isOverdue = false"}
+{"id":"TC-55","actual":"47.98h -> false; 48.02h -> true"}
+{"id":"TC-56","actual":"OVERDUE_THRESHOLD_MS = 172800000"}

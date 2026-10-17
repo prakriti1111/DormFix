@@ -1,0 +1,7 @@
+{
+  "runAt": "2026-10-17T08:37:34.014Z",
+  "node": "v22.17.0",
+  "platform": "Windows_NT 10.0.26200 (x64)",
+  "database": "mongodb-memory-server (in-memory MongoDB)",
+  "command": "npm run test:evidence"
+}

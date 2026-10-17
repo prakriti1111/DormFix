@@ -1,0 +1,108 @@
+
+=============================== Coverage summary ===============================
+Statements   : 93.86% ( 398/424 )
+Branches     : 80.48% ( 132/164 )
+Functions    : 92.06% ( 58/63 )
+Lines        : 94.14% ( 386/410 )
+================================================================================
+(node:473) [MONGOOSE] Warning: Duplicate schema index on {"email":1} found. This is often due to declaring an index using both "index: true" and "schema.index()". Please remove the duplicate index definition.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:473) [MONGOOSE] Warning: Duplicate schema index on {"registrationNumber":1} found. This is often due to declaring an index using both "index: true" and "schema.index()". Please remove the duplicate index definition.
+PASS tests/integration/complaints.test.js (11.198 s)
+  Authorization
+    ✓ TC-10: resident cannot access the warden-only complaint list (313 ms)
+    ✓ TC-11: resident cannot view another resident's complaint (289 ms)
+    ✓ TC-12: resident cannot update complaint status (288 ms)
+    ✓ TC-13: resident cannot reorder complaints (323 ms)
+    ✓ TC-14: warden can list all complaints (338 ms)
+    ✓ TC-43: warden cannot submit a complaint (resident-only) (273 ms)
+    ✓ TC-63: unauthenticated request to create a complaint is rejected (257 ms)
+  Complaint submission
+    ✓ TC-15: submit a valid complaint without an image (268 ms)
+    ✓ TC-16: submit a complaint with a valid image (270 ms)
+    ✓ TC-17: description shorter than 5 characters is rejected (266 ms)
+    ✓ TC-18: image larger than 5 MB is rejected (304 ms)
+    ✓ TC-19: unsupported file type (PDF) is rejected (258 ms)
+    ✓ TC-41: complaint IDs are sequential (HF-0001, HF-0002) (269 ms)
+    ✓ TC-42: resident identity comes from the profile, not the request body (270 ms)
+  Complaint retrieval
+    ✓ TC-20: resident sees only their own complaint history (274 ms)
+    ✓ TC-44: warden filters by status (299 ms)
+    ✓ TC-45: warden filters overdue complaints only (321 ms)
+    ✓ TC-46: warden filters by room number (282 ms)
+    ✓ TC-47: invalid status filter is rejected (297 ms)
+    ✓ TC-48: sorting by oldest / newest orders by creation time (308 ms)
+    ✓ TC-50: malformed complaint ID returns 400 (261 ms)
+    ✓ TC-51: well-formed but non-existent complaint ID returns 404 (279 ms)
+    ✓ TC-64: overdue flag is recalculated and persisted when complaints are read (295 ms)
+  Status workflow and ordering
+    ✓ TC-21: SUBMITTED -> UNDER_PROGRESS (282 ms)
+    ✓ TC-22: UNDER_PROGRESS -> RESOLVED sets resolvedAt and clears overdue (275 ms)
+    ✓ TC-23: RESOLVED -> SUBMITTED is rejected (terminal state) (272 ms)
+    ✓ TC-52: SUBMITTED -> RESOLVED directly is allowed (SRS BR-05) (279 ms)
+    ✓ TC-49: unknown status value in the request is rejected (270 ms)
+    ✓ TC-65: UNDER_PROGRESS -> SUBMITTED (backwards) is rejected (279 ms)
+    ✓ TC-24: warden moves a complaint up (priorityOrder swapped with neighbour) (366 ms)
+    ✓ TC-53: moving the top complaint up is a no-op (298 ms)
+    ✓ TC-54: reorder with an invalid direction is rejected (307 ms)
+
+(node:473) [MONGOOSE] Warning: Duplicate schema index on {"email":1} found. This is often due to declaring an index using both "index: true" and "schema.index()". Please remove the duplicate index definition.
+(node:473) [MONGOOSE] Warning: Duplicate schema index on {"registrationNumber":1} found. This is often due to declaring an index using both "index: true" and "schema.index()". Please remove the duplicate index definition.
+PASS tests/integration/feedback_dashboard.test.js
+  Feedback
+    ✓ TC-28: submit feedback on a resolved complaint (309 ms)
+    ✓ TC-29: feedback on an unresolved complaint is rejected (304 ms)
+    ✓ TC-30: second feedback on the same complaint is rejected (281 ms)
+    ✓ TC-31: rating outside 1-5 is rejected (290 ms)
+    ✓ TC-32: resident cannot give feedback on another resident's complaint (269 ms)
+    ✓ TC-66: comment longer than 500 characters is rejected (267 ms)
+    ✓ TC-67: warden can read feedback; resident can read own; other resident cannot (307 ms)
+    ✓ TC-68: warden cannot submit feedback (resident-only) (260 ms)
+  Warden dashboard statistics
+    ✓ TC-69: counts, overdue total and average resolution time are correct (290 ms)
+    ✓ TC-70: dashboard with no complaints returns zeros and null average (268 ms)
+    ✓ TC-71: resident cannot access the warden dashboard (251 ms)
+
+(node:473) [MONGOOSE] Warning: Duplicate schema index on {"email":1} found. This is often due to declaring an index using both "index: true" and "schema.index()". Please remove the duplicate index definition.
+(node:473) [MONGOOSE] Warning: Duplicate schema index on {"registrationNumber":1} found. This is often due to declaring an index using both "index: true" and "schema.index()". Please remove the duplicate index definition.
+PASS tests/integration/auth.test.js
+  Authentication
+    ✓ TC-01: register a new resident with valid details (119 ms)
+    ✓ TC-02: register with a duplicate email (93 ms)
+    ✓ TC-03: register with a duplicate registration number (94 ms)
+    ✓ TC-04: register with a password shorter than 6 characters (8 ms)
+    ✓ TC-05: login with correct credentials (178 ms)
+    ✓ TC-06: login with an incorrect password (184 ms)
+    ✓ TC-07: access a protected route with no token (8 ms)
+    ✓ TC-08: access a protected route with a malformed/invalid token (5 ms)
+    ✓ TC-33: client-supplied role is ignored on registration (no privilege escalation) (98 ms)
+    ✓ TC-34: register with a missing required field (7 ms)
+    ✓ TC-35: register with an invalid email format (6 ms)
+    ✓ TC-36: login with an unregistered email gives the same generic error (10 ms)
+    ✓ TC-37: GET /api/auth/me with a valid token returns the user without password (95 ms)
+    ✓ TC-38: password is stored hashed, never as plain text (94 ms)
+    ✓ TC-39: seeded warden can log in and receives role 'warden' (189 ms)
+    ✓ TC-40: unknown API route returns 404 in the standard error shape (11 ms)
+    ✓ TC-61: token for a deleted user is rejected (115 ms)
+    ✓ TC-62: an expired token is rejected (100 ms)
+
+PASS tests/unit/utils.test.js
+  Utilities (unit)
+    ✓ TC-57: JWT contains user id and role and an expiry (1 ms)
+    ✓ TC-58: authorize() blocks a role that is not allowed (403) (1 ms)
+    ✓ TC-59: authorize() allows a permitted role and calls next() (1 ms)
+    ✓ TC-60: success()/error() helpers return the standard response shape (1 ms)
+
+PASS tests/unit/overdue.test.js
+  Overdue logic (unit)
+    ✓ TC-25: complaint created 5 hours ago is not overdue (1 ms)
+    ✓ TC-26: unresolved complaint older than 48 hours is overdue
+    ✓ TC-27: resolved complaint older than 48 hours is never overdue
+    ✓ TC-55: boundary - 47h59m not overdue, 48h01m overdue
+    ✓ TC-56: threshold constant equals 48 hours in milliseconds
+
+Test Suites: 5 passed, 5 total
+Tests:       70 passed, 70 total
+Snapshots:   0 total
+Time:        16.749 s
+Test results written to: tests/evidence/jest-results.json
