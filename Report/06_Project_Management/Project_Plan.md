@@ -1,71 +1,75 @@
 # Project Plan
-## Dormfix — Hostel Complaint & Maintenance Management System
+## DormFix — Hostel Complaint & Maintenance Management System
 
-**Group Number:** [Group Number]
 
----
 
 ## 1. Project Timeline (Original Plan)
 
-| Phase | Duration | Planned Deliverables |
-|-------|----------|------------------------|
-| Phase 1: Requirements & Design | Week 1–2 | Problem statement, SRS, use cases, architecture, database design |
-| Phase 2: Core Backend Setup | Week 3–4 | Project scaffolding, auth (register/login/JWT), role middleware |
-| Phase 3: Complaint Feature | Week 5–6 | Complaint submission, resident dashboard, image upload |
-| Phase 4: Warden Features | Week 7–8 | Warden dashboard, filtering/sorting, manual reordering, status updates |
-| Phase 5: Feedback & Polish | Week 9 | Feedback system, UI polish, error handling |
-| **Mid-Semester Checkpoint** | **Week 9–10** | **This submission** |
-| Phase 6: Testing | Week 11 | Full test suite execution, bug fixes |
-| Phase 7: Documentation & Demo | Week 12 | Final report, demo video, final packaging |
-| Phase 8: Buffer / Contingency | Week 13 | Address any remaining issues found during testing |
+| Phase | Planned Duration | Planned Deliverables | Final Status |
+|---|---|---|---|
+| Phase 1: Requirements & Design | Week 1 | Problem statement, SRS, use cases, architecture, and database design | Completed |
+| Phase 2: Core Backend Setup | Week 1 | Project scaffolding, registration, login, JWT authentication, and role-based middleware | Completed |
+| Phase 3: Complaint Feature | Week 2 | Complaint submission, resident dashboard, and image upload | Completed |
+| Phase 4: Warden Features | Week 2 | Warden dashboard, filtering, sorting, manual reordering, and status updates | Completed |
+| Phase 5: Feedback & UI Polish | Week 3 | Feedback system, interface refinement, and error handling | Completed |
+| Phase 6: Testing | Week 4 | Test case execution, validation, and bug fixing | Completed |
+| Phase 7: Documentation & Demo | Week 5 | Project report, demo video, and final packaging | Completed |
+| Phase 8: Buffer / Contingency | Week 5 | Review and resolution of remaining issues | Completed |
 
-## 2. Current Progress Against Plan
 
-As of this mid-semester submission, the group has completed:
-- Full requirements and design documentation (Phase 1) ✅
-- Authentication and authorization — registration, login, JWT,
-  role-based middleware (Phase 2) ✅
-- Complaint submission and resident dashboard, including image upload
-  (Phase 3) ✅
-- Warden dashboard, filtering, sorting, and manual reordering
-  (Phase 4) ✅
-- Feedback system (Phase 5) ✅
 
-This places the group slightly ahead of the original Phase 4–5
-midpoint target, with an end-to-end working system already covering
-both user roles.
+---
 
-## 3. Delayed or Pending Tasks
+## 2. Final Progress Against Plan
 
-| Task | Status | Reason | Planned Resolution |
-|------|--------|--------|----------------------|
-| Automated test suite execution against a live test database | Pending | Test scaffolding is written but not yet wired to `mongodb-memory-server` | Complete in Phase 6 |
-| UI polish (empty/loading states refinement, responsive edge cases) | In progress | Prioritized core functionality first | Complete in Phase 5–6 |
-| [Add any group-specific pending item] | [Status] | [Reason] | [Planned Resolution] |
+The team has completed all planned project phases, covering requirements analysis, system design, backend and frontend development, testing, documentation, and demonstration preparation.
 
-## 4. Risks and Mitigation Plan
+The completed deliverables include:
+
+- **Requirements and design:** Problem statement, Software Requirements Specification (SRS), use cases, architecture, database design, and UML diagrams.
+- **Authentication and authorization:** Resident registration and login, password hashing, JWT-based authentication, protected routes, and role-based access control.
+- **Complaint management:** Complaint submission, optional image attachments, complaint history, status tracking, and complaint ownership validation.
+- **Warden functionality:** Dashboard statistics, complaint filtering and sorting, manual prioritization, status management, and daily resolution trends.
+- **Feedback management:** Ratings from 1 to 5, optional comments for resolved complaints, and duplicate-feedback prevention.
+- **Testing and validation:** Test case preparation, execution, defect identification, and verification of the implemented workflows.
+- **Documentation and demonstration:** Project report, project management records, contribution details, Git evidence, screenshots, and demo video preparation.
+- **Final review:** Review of the application, documentation, and submission package.
+
+The project has reached completion of its planned scope, with the implemented system supporting the principal workflows for both residents and wardens.
+
+---
+
+## 3. Risks and Mitigation Plan
 
 | Risk | Likelihood | Impact | Mitigation |
-|------|------------|--------|-------------|
-| Team members unavailable near final deadline | Medium | High | Front-loaded core feature work; buffer week reserved in Phase 8 |
-| MongoDB connection/environment issues during demo | Low | Medium | Seed script provided for quick, reproducible demo data; local + Atlas connection strings both tested |
-| Scope creep (adding out-of-scope features like notifications) | Medium | Medium | Scope explicitly documented and reaffirmed in SRS Section 5 (MoSCoW prioritization) |
-| Merge conflicts from parallel frontend/backend work | Low | Low | Clear module boundaries (routes/controllers/services) reduce overlap |
-| [Add any group-specific risk] | [Likelihood] | [Impact] | [Mitigation] |
+|---|---|---|---|
+| Team members unavailable near the final deadline | Medium | High | Distributed responsibilities and coordinated development helped complete the planned work. |
+| MongoDB connection or environment issues during demonstration | Low | Medium | Database configuration and connection settings were reviewed, and the application environment was checked. |
+| Scope creep from additional features | Medium | Medium | The documented project scope was followed, and out-of-scope features were excluded from the implementation. |
+| Merge conflicts during parallel frontend and backend development | Low | Medium | Modular development and defined responsibilities helped reduce conflicts between components. |
+| Invalid access to another resident's complaints | Medium | High | Authentication, role-based authorization, and complaint ownership checks were incorporated into the application. |
+| Invalid complaint status transitions or duplicate feedback | Medium | Medium | Server-side validation and eligibility checks were implemented to enforce workflow rules. |
 
-## 5. Task Allocation (Summary)
+---
 
-A detailed weekly breakdown is provided in `Contribution_Record.md`.
-At a high level, work was divided as follows:
+## 4. Task Allocation Summary
 
-| Area | Primary Owner(s) |
-|------|--------------------|
-| Backend: Auth & Middleware | [Member Name] |
-| Backend: Complaint & Feedback Services | [Member Name] |
-| Frontend: Auth Pages & Context | [Member Name] |
-| Frontend: Resident Dashboard & Complaint Flow | [Member Name] |
-| Frontend: Warden Dashboard | [Member Name] |
-| Documentation & Testing | [Member Name] |
+The project responsibilities were distributed among the four team members according to their assigned implementation and documentation work.
 
-*(Update the names above and in `Contribution_Record.md` to match your
-actual group's task division.)*
+| Area | Primary Owner | Responsibilities |
+|---|---|---|
+| Backend: Authentication and Complaint Services | Prakriti Gupta | Authentication implementation, complaint backend, and SRS preparation |
+| Authorization and Frontend Interfaces | Paramita Ghosh | Role-based authorization, resident complaint interface, warden interface, project report, and project management documentation |
+| Feedback and Testing | Naina | Feedback-related work, test case preparation, and testing activities |
+| UML and System Modelling | Nishi Gupta | UML diagrams and supporting system design documentation |
+
+---
+
+## 6. Project Completion Summary
+
+DormFix has completed the planned requirements, design, implementation, testing, and documentation activities. The system provides a centralized workflow for residents to register and track hostel complaints and for wardens to manage complaint status, prioritize work, review dashboard statistics, and receive feedback on resolved complaints.
+
+The project follows a modular client-server architecture using the MERN stack, with authentication, authorization, server-side validation, and persistent database storage supporting the main workflows.
+
+The original project plan provided a structured basis for task allocation and progress monitoring. Completion of the planned phases represents the delivery of the intended project scope.
+
