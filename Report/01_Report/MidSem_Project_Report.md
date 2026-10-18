@@ -182,10 +182,13 @@ Non-functional requirements specify the quality attributes and operational const
 
 ## 6. Requirements Model
 
-Full use-case descriptions and user stories with acceptance criteria
-are provided in `02_Requirements/Use_Cases_and_User_Stories.md`,
-covering 13 use cases across both the Resident and Warden actors,
-along with 7 representative user stories.
+Detailed use-case descriptions and user stories with acceptance criteria are provided in `02_Requirements/Use_Cases_and_User_Stories.md`.
+
+The use-case documentation describes the interactions between the two primary actors of DormFix: **Resident** and **Warden**. Resident use cases cover account registration and login, submitting maintenance complaints, viewing complaint history, tracking complaint status, and providing feedback after resolution. Warden use cases cover viewing complaints submitted by residents, filtering and sorting complaints, manually adjusting complaint priority, updating complaint status, identifying overdue complaints, and monitoring dashboard statistics.
+
+The user stories describe these functionalities from the users' perspectives and explain the purpose of each feature. Their acceptance criteria define the expected system behaviour and the conditions under which a feature can be considered successfully implemented. For example, a resident should be able to submit a complaint and track its progress but must not be able to access another resident's complaints. Similarly, a warden should be able to manage complaint status while the system rejects invalid status transitions.
+
+Together, the use cases, user stories, and acceptance criteria establish a clear connection between user needs, functional requirements, system implementation, and testing. They help ensure that the developed system addresses the intended requirements and that its major workflows can be verified systematically.
 
 ## 7. System Design
 
@@ -238,14 +241,11 @@ DormFix is organized into functional modules, each responsible for a specific se
 | **Dashboard Module** | Aggregates and presents complaint statistics, complaint status summaries, and daily resolution trends. |
 | **Upload Module** | Validates uploaded complaint images and manages their storage in the local file system. |
 
-
-
 ### 7.3 Database Design
-## 12. Database Design
 
 DormFix uses MongoDB as its persistent data store, with Mongoose providing schema definition, data validation, and database interaction.Detailed description of database is documented in `03_Design/Database_Design.md`.The primary collections used in the system are described below :
 
-### 12.1 Users
+#### 7.3.1 Users
 
 The Users collection stores resident and warden account information.
 
@@ -256,7 +256,7 @@ Typical fields include:
 - Hostel and room information
 - Account metadata
 
-### 12.2 Complaints
+#### 7.3.2 Complaints
 
 The Complaints collection stores maintenance complaint information submitted by residents.
 
@@ -272,7 +272,7 @@ Typical fields include:
 - Resolution timestamp
 - Priority order
 
-### 12.3 Feedback
+#### 7.3.3 Feedback
 
 The Feedback collection stores resident feedback associated with resolved complaints.
 
@@ -283,11 +283,11 @@ Typical fields include:
 - Comment
 - Feedback submission timestamp
 
-### 12.4 Counters
+#### 7.3.4 Counters
 
 The Counters collection maintains sequence information required for generating sequential identifiers wherever applicable.
 
-### 12.5 Data Integrity
+### 7.4 Data Integrity
 
 DormFix enforces several application-level rules to maintain data integrity, consistency, and security:
 
@@ -298,7 +298,7 @@ DormFix enforces several application-level rules to maintain data integrity, con
 - **Status Validation:** Complaint status changes must follow the permitted transition rules.
 - **Server-Side Overdue Calculation:** Overdue status is calculated by the server rather than being accepted from the client, ensuring consistent and reliable results. 
 
-### 7.4 UML Diagrams
+### 7.5 UML Diagrams
 A class diagram of the backend domain model, two sequence diagrams
 (complaint submission, status update), and two activity diagrams
 (complaint lifecycle, authentication flow) are provided in
@@ -342,9 +342,8 @@ A class diagram of the backend domain model, two sequence diagrams
 - Final accessibility and responsiveness review
 
 ### 9.3 Screenshots of the Working System
-## 12. User Interface Screenshots
 
-### 12.1 Resident Login Page
+#### 9.3.1 Resident Login Page
 
 The login page allows registered residents to authenticate and access the DormFix system.
 
@@ -352,7 +351,7 @@ The login page allows registered residents to authenticate and access the DormFi
 
 *Figure 2: Resident login page.*
 
-### 12.2 Resident Dashboard
+#### 9.3.2 Resident Dashboard
 
 The resident dashboard provides an overview of submitted complaints and their current statuses.
 
@@ -360,7 +359,7 @@ The resident dashboard provides an overview of submitted complaints and their cu
 
 *Figure 3: Resident dashboard.*
 
-### 12.3 New Complaint Form
+#### 9.3.3 New Complaint Form
 
 The complaint submission form enables residents to report hostel maintenance issues and attach an image when required.
 
@@ -368,7 +367,7 @@ The complaint submission form enables residents to report hostel maintenance iss
 
 *Figure 4: New complaint submission form.*
 
-### 12.4 Complaint Details
+#### 9.3.4 Complaint Details
 
 The complaint details page displays the information associated with a selected complaint, including its status and any attached image.
 
@@ -376,7 +375,7 @@ The complaint details page displays the information associated with a selected c
 
 *Figure 5: Complaint details with image attachment.*
 
-### 12.5 Warden Dashboard
+#### 9.3.5 Warden Dashboard
 
 The warden dashboard presents complaint statistics and daily resolution trends to support maintenance monitoring.
 
@@ -386,7 +385,7 @@ The warden dashboard presents complaint statistics and daily resolution trends t
 
 *Figure 6: Warden dashboard showing statistics and resolution trends.*
 
-### 12.6 Warden Complaint List
+#### 9.3.6 Warden Complaint List
 
 The complaint management interface allows the warden to filter and sort complaints and review their current statuses.
 
@@ -394,7 +393,7 @@ The complaint management interface allows the warden to filter and sort complain
 
 *Figure 7: Warden complaint list with filters applied.*
 
-### 12.7 Feedback Form
+#### 9.3.7 Feedback Form
 
 The feedback form allows residents to submit a rating and an optional comment after a complaint has been resolved.
 
@@ -480,67 +479,83 @@ stored in `05_Testing/Test_Evidence/`.
 ## 11. Project-Management Status
 
 ### 11.1 Original Project Plan
-Development is being carried out incrementally, with requirements and design established before implementation of the corresponding modules. This approach allows individual modules to be developed and verified before the final system is integrated.
 
-The project is organized into the following major phases:
+Development followed an incremental approach in which requirements and system design were established before the implementation of individual modules. This approach supported modular development, progressive verification, and integration of the system's components.
+
+The project was organized into the following major phases:
 
 1. Requirements Analysis
-
 2. System Design
-
 3. Authentication and Authorization
-
 4. Complaint Management
-
 5. Warden Management
-
 6. Feedback and Dashboard
-
 7. Testing and Verification
-
 8. Documentation and Demonstration
 
-See `06_Project_Management/Project_Plan.md` for the full 8-phase
-timeline (requirements/design → backend → complaint feature → warden
-feature → feedback/polish → **mid-semester checkpoint** → testing →
-documentation/demo → buffer).
+The original project plan defined the expected deliverables, task allocation, timeline, risks, and mitigation strategies for each phase. Refer to `06_Project_Management/Project_Plan.md` for the complete project timeline and progress summary.
 
-### 11.2 Current Progress
-The group has completed Phases 1 through 5 of the original plan —
-requirements, design, authentication, the complaint feature, the
-warden feature, and the feedback system — placing the project at
-approximately **70%** completion
-against the full plan.
+### 11.2 Final Project Progress
+
+All planned project phases have been completed. The delivered system covers requirements analysis, system design, authentication, authorization, complaint management, warden functionality, feedback, testing, documentation, and demonstration preparation.
+
+The final project deliverables include:
+
+- Requirements and design documentation, including the SRS, use cases, architecture, database design, and UML diagrams.
+- Authentication and authorization mechanisms, including password hashing, JWT-based authentication, protected resources, and role-based access control.
+- Complaint submission, optional image attachments, complaint history, status tracking, and ownership validation.
+- Warden dashboard functionality, including complaint filtering, sorting, manual prioritization, status management, and dashboard statistics.
+- Feedback functionality for resolved complaints, including ratings and optional comments.
+- Testing and verification of implemented workflows, along with supporting test documentation.
+- Project report, project management records, contribution details, Git evidence, screenshots, and demonstration materials.
+
+The project has completed its planned scope. The final status is recorded as **100% of planned project phases completed**. This refers to completion of the planned phases and deliverables, rather than a claim that the system is free from every possible defect or limitation.
 
 ### 11.3 Delayed or Pending Tasks
-- Full automated test execution (in progress, see Section 9.2)
-- Final UI polish pass
+
+At the time of this report, no outstanding tasks have been reported against the original project plan. The planned implementation, testing, documentation, and demonstration-preparation activities have been completed.
+
+| Task | Final Status |
+|---|---|
+| Requirements and design documentation | Completed |
+| Authentication and authorization | Completed |
+| Complaint management and image upload | Completed |
+| Warden dashboard and complaint management | Completed |
+| Feedback functionality | Completed |
+| Testing and verification | Completed |
+| UI refinement and error handling | Completed |
+| Final report and project documentation | Completed |
+| Demonstration preparation and submission packaging | Completed |
 
 ### 11.4 Risks and Mitigation Plan
 
-| Risk                                              | Potential Impact                    | Mitigation                                                         |
-|---------------------------------------------------|-------------------------------------|--------------------------------------------------------------------|
-| Limited development time near final submission    | Incomplete testing or documentation | Maintain a final buffer period in the project schedule.            |
-| Database/environment failure during demonstration | System may become unavailable       | Maintain reproducible seed data and documented setup instructions. |
-| Incomplete automated testing                      | Undetected defects                  | Prioritize security, authorization, lifecycle, and validation tests. |
-| Scope expansion                                   | Delay in core functionality         | Maintain explicit in-scope and out-of-scope requirements.          |
-| Inconsistent team contributions                   | Delays in dependent modules         | Maintain task ownership and regular progress tracking.             |
+The project team identified risks that could affect development, integration, testing, and demonstration. Mitigation measures were incorporated into the development and review process.
 
-See `06_Project_Management/Project_Plan.md`, Section 4, for the full
-risk register. 
+| Risk | Potential Impact | Mitigation |
+|---|---|---|
+| Limited development time near the submission deadline | Incomplete testing or documentation | Distributed responsibilities and incremental development helped the team complete the planned deliverables. |
+| Database or environment failure during demonstration | Temporary unavailability of the system | Database configuration and application setup instructions were reviewed to support reproducible execution. |
+| Defects in authentication, authorization, or complaint workflows | Unauthorized access or incorrect system behaviour | Authentication checks, role-based authorization, ownership validation, and complaint lifecycle rules were implemented and tested. |
+| Scope expansion | Delays in core functionality | The documented project scope was maintained, and out-of-scope features were excluded from the current implementation. |
+| Integration issues between frontend and backend components | Inconsistent behaviour or failed requests | Modular architecture, API integration, and workflow verification were used to support integration. |
+| Uneven task distribution or delays in dependent modules | Reduced development efficiency | Responsibilities were assigned by functional area, with progress documented through project records and repository activity. |
+
+The complete risk register and mitigation plan are documented in `06_Project_Management/Project_Plan.md`, Section 3. 
 
 ## 12. Individual Contribution Table
 
-A detailed breakdown, including task-level ownership and a signed
-declaration from all members, is provided in
-`06_Project_Management/Contribution_Record.md`. Summary:
+A detailed breakdown of task-level ownership and individual responsibilities, along with the signed declaration of all team members, is provided in `06_Project_Management/Contribution_Record.md`.
+
+The summary of individual contributions is presented below.
 
 | Member Name | Primary Responsibility | Contribution % |
-|--------------|---------------------------|-------------------|
-| Prakriti Gupta | [Responsibility] | [%] |
-| Paramita Ghosh | [Responsibility] | [%] |
-| Naina | [Responsibility] | [%] |
-| Nishi Gupta | [Responsibility] | [%] |
+|---|---|---:|
+| Prakriti Gupta | Backend authentication, complaint backend implementation, SRS preparation, and demo video preparation | 32% |
+| Paramita Ghosh | Authorization, resident complaint interface, warden interface, project report, and project management documentation | 28% |
+| Naina | Feedback functionality, test case preparation, software testing, and testing documentation | 30% |
+| Nishi Gupta | UML diagrams and system design documentation | 10% |
+| **Total** | | **100%** |
+
 
 ## 13. Challenges Faced and Solutions Attempted
 
@@ -552,7 +567,7 @@ declaration from all members, is provided in
 | Avoiding scope creep toward features like notifications | Reaffirmed scope boundaries early via the SRS MoSCoW prioritization and referred back to it during sprint planning (see Meeting Log) |
 | [Add any additional group-specific challenge] | [Add your group's actual solution] |
 
-## 15. Future Scope
+## 14. Future Scope
 
 The current architecture provides a foundation for extending DormFix beyond the current release.
 
@@ -574,7 +589,7 @@ Possible future enhancements include:
 
 These features are outside the scope of the current release and would require corresponding changes to the requirements, architecture, security model, and testing strategy.
 
-# 16. Conclusion
+## 15. Conclusion
 
 DormFix provides a structured digital workflow for managing hostel maintenance complaints.
 
@@ -595,7 +610,7 @@ The implementation emphasizes several important software-engineering principles:
 
 The current implementation establishes the core complaint-management workflow and provides a foundation for future extensions such as technician management, notifications, real-time updates, and multi-hostel support.
 
-## 17. References
+## 16. References
 
 1. Express.js Documentation — https://expressjs.com/
 2. Mongoose Documentation — https://mongoosejs.com/docs/
