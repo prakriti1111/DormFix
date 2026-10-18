@@ -6,11 +6,17 @@
 
 ---
 
-## 1. Entity-Relationship Diagram
+## 1.Entity-Relationship Diagram
 
-MongoDB is not relational, but the entities below have clear logical
-relationships, shown here in ER form for clarity. Paste into a
-Mermaid renderer to view/export.
+MongoDB is not relational, but the entities below have clear logical relationships, shown here in ER form for clarity. Paste into a Mermaid renderer to view/export.
+
+**Figure 1: Chen-Style ER Diagram**
+
+![ER Diagram](https://res.cloudinary.com/n6wgvjps/image/upload/f_auto,q_auto/dormfix_er)
+
+**Figure 2: ER Diagram**
+
+
 
 ```mermaid
 erDiagram
