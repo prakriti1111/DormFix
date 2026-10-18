@@ -1,7 +1,0 @@
-{
-  "runAt": "2026-10-17T04:33:08.031Z",
-  "node": "v22.22.2",
-  "platform": "Linux 6.18.44-fc-v139 (x64)",
-  "database": "MongoDB-compatible server (FerretDB 1.24.0, SQLite backend) - run inside the AI sandbox",
-  "command": "npm run test:evidence"
-}

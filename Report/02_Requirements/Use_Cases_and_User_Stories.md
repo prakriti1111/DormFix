@@ -1,8 +1,6 @@
 # Use Cases and User Stories
 ## Dormfix — Hostel Complaint & Maintenance Management System
 
-**Group Number:** [Group Number]
-
 ---
 
 ## 1. Actors
@@ -14,10 +12,6 @@
 
 ## 2. Use-Case Diagram (Mermaid)
 
-Paste the block below into any Mermaid-compatible viewer (e.g.
-mermaid.live, the Mermaid VS Code extension, or directly into a
-Markdown file that supports Mermaid) to render the diagram. Export it
-as a PNG/PDF for the report if a static image is required.
 
 ```mermaid
 graph LR
@@ -122,9 +116,6 @@ graph LR
 ---
 
 ## 4. User Stories with Acceptance Criteria
-
-*(Alternative/complementary format to the use cases above — useful if
-your course prefers Agile-style documentation.)*
 
 **US-01:** As a resident, I want to register with my hostel details so
 that I can start submitting complaints.

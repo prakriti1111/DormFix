@@ -2,11 +2,6 @@
 
 ## DormFix — Hostel Complaint and Maintenance Management System
 
-**Group Number:** [Group Number]
-**Course:** [Course Name and Section]
-**Supervisor:** [Supervisor/Instructor Name]
-**Date:** [Submission Date]
-
 ---
 
 # 1. Introduction

@@ -1,7 +1,4 @@
-"""Master list of test cases. Single source of truth for Test_Cases.pdf / .md.
-Automated cases (TC-xx) are linked to Jest tests by ID in the test title.
-Manual cases (UI-xx) must be executed by a group member; screenshots go to
-Test_Evidence/UI-xx.png."""
+"""Master list of test cases. """
 
 # (id, module, input, expected)
 AUTO = [
