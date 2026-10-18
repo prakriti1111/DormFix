@@ -342,18 +342,65 @@ A class diagram of the backend domain model, two sequence diagrams
 - Final accessibility and responsiveness review
 
 ### 9.3 Screenshots of the Working System
-*(Insert screenshots here before final submission — recommended set:
-login page, resident dashboard, new complaint form, complaint details
-with image, warden dashboard with stats and chart, warden complaint
-list with filters, status update in action, feedback form.)*
+## 12. User Interface Screenshots
 
-[Screenshot 1: Resident Login]
-[Screenshot 2: Resident Dashboard]
-[Screenshot 3: New Complaint Form]
-[Screenshot 4: Complaint Details]
-[Screenshot 5: Warden Dashboard with Statistics]
-[Screenshot 6: Warden Complaint List with Filters Applied]
-[Screenshot 7: Feedback Form]
+### 12.1 Resident Login Page
+
+The login page allows registered residents to authenticate and access the DormFix system.
+
+![Screenshot 1: Resident Login](screenshots\login.jpg)
+
+*Figure 2: Resident login page.*
+
+### 12.2 Resident Dashboard
+
+The resident dashboard provides an overview of submitted complaints and their current statuses.
+
+![Screenshot 2: Resident Dashboard](screenshots\hostellerDashboard.jpg)
+
+*Figure 3: Resident dashboard.*
+
+### 12.3 New Complaint Form
+
+The complaint submission form enables residents to report hostel maintenance issues and attach an image when required.
+
+![Screenshot 3: New Complaint Form](screenshots\complaintPage.jpg)
+
+*Figure 4: New complaint submission form.*
+
+### 12.4 Complaint Details
+
+The complaint details page displays the information associated with a selected complaint, including its status and any attached image.
+
+![Screenshot 4: Complaint Details](screenshots\complaintDashboard.jpg)
+
+*Figure 5: Complaint details with image attachment.*
+
+### 12.5 Warden Dashboard
+
+The warden dashboard presents complaint statistics and daily resolution trends to support maintenance monitoring.
+
+![Screenshot 5: Warden Dashboard](screenshots\wardenDashboard.jpg)
+
+![Screenshot 5: Warden Performance Overview](screenshots\performanceOverview.jpg)
+
+*Figure 6: Warden dashboard showing statistics and resolution trends.*
+
+### 12.6 Warden Complaint List
+
+The complaint management interface allows the warden to filter and sort complaints and review their current statuses.
+
+![Screenshot 6: Warden Complaint List with Filters Applied](screenshots\complaintLogs.jpg)
+
+*Figure 7: Warden complaint list with filters applied.*
+
+### 12.7 Feedback Form
+
+The feedback form allows residents to submit a rating and an optional comment after a complaint has been resolved.
+
+![Screenshot 7: Feedback Form](screenshots\feedbackSection.jpg)
+
+*Figure 8: Resident feedback form.*
 
 ### 9.4 Important Implementation Decisions
 - **Resident identity fields are read from the authenticated user's
