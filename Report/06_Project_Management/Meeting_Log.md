@@ -1,27 +1,21 @@
 # Meeting Log
 ## Dormfix — Hostel Complaint & Maintenance Management System
 
-**Group Number:** [Group Number]
 
-Fill in actual dates, attendees, and notes from your group's real
-meetings. A sample structure with placeholder entries is provided
-below — replace with your actual meeting history before submission.
 
----
+| S.No | Date | Attendees | Agenda | Key Decisions | Action Items |
+|---:|---|---|---|---|---|
+| 1 | 17 Sep 2026 | All four members | Project topic selection and initial scope discussion | Selected DormFix, a hostel complaint and maintenance management system, based on its practical relevance and manageable scope. | Finalize the problem statement and identify the primary users. |
+| 2 | 18 Sep 2026 | All four members | Finalization of the problem statement and project scope | Established residents and wardens as the primary user roles. Technician integration and other advanced features were excluded from the current scope. | Prepare the Software Requirements Specification (SRS). |
+| 3 | 19 Sep 2026 | All four members | Functional and non-functional requirements review | Identified requirements for authentication, complaint submission, status tracking, warden management, overdue complaints, and feedback. | Finalize the requirements document and identify system constraints. |
+| 4 | 20 Sep 2026 | All four members | Database schema and data modelling | Planned separate data models for users, complaints, and feedback, with support for complaint ordering. | Finalize the database design and corresponding diagrams. |
+| 5 | 20 Sep 2026 | All four members | Architecture and technology stack finalization | Selected the MERN stack and a layered backend structure separating routes, controllers, business logic, and data models. | Maintain the repository and complete the application structure. |
+| 6 | 21 Sep 2026 | Paramita Ghosh, Prakriti Gupta | Authentication implementation planning | Divided development responsibilities, including backend authentication and interface work. Planned password hashing and JWT-based authentication. | Implement and test registration, login, and protected routes. |
+| 7 |  28 Sep 2026  | Naina | Authentication review and integration | Reviewed authentication implementation and integration progress. | Verify authentication behaviour and continue complaint management development. |
+| 8 | 22 Sep 2026 | All four members | Complaint management implementation planning | Defined complaint submission, optional image attachments, complaint history, and the statuses SUBMITTED, UNDER_PROGRESS, and RESOLVED. | Implement the complaint backend and resident-facing interface. |
+| 9 | 24 Sep 2026 | Naina | Complaint workflow review | Reviewed complaint submission and tracking, including ownership validation, valid status transitions, and overdue calculations. | Validate server-side access rules and the 48-hour overdue threshold. |
+| 10 | 26 Sep 2026 | Paramita Ghosh, Prakriti Gupta | Warden dashboard and complaint management review | Reviewed the planned or implemented dashboard statistics, filtering, sorting, manual prioritization, and daily resolution trends. | Complete outstanding warden interface and API integration work. |
+| 11 | 28 Sep 2026 | Naina | Feedback functionality and testing review | Reviewed the feedback workflow for resolved complaints, including ratings from 1 to 5 and optional comments. | Verify feedback eligibility, duplicate-submission prevention, and relevant test cases. |
+| 12 | October 2026 | All four members | Mid-semester report preparation and project review | Organized documentation covering requirements, architecture, database design, implementation, testing, project management, and individual contributions. | Consolidate documentation and verify screenshots, demo links, and Git evidence. |
+| 13 | 18 Oct 2026 | All four members | Final review before mid-semester submission | Planned a final review of the application, report, test evidence, Git history, and submission files. | Resolve outstanding issues, confirm actual test results, and finalize the submission. |
 
-| # | Date | Attendees | Agenda | Key Decisions | Action Items |
-|---|------|-----------|--------|----------------|----------------|
-| 1 | [Date] | [All members] | Project topic selection and initial scope discussion | Chose a hostel complaint management system over alternatives due to clear scope and real-world relevance | Each member to draft one candidate problem statement by next meeting |
-| 2 | [Date] | [All members] | Finalize problem statement and objectives | Agreed on resident/warden two-role model; excluded technician integration from this phase | Begin SRS draft |
-| 3 | [Date] | [All members] | Requirements review | Finalized functional/non-functional requirements list; prioritized using MoSCoW | Assign design tasks (architecture, DB schema) |
-| 4 | [Date] | [Subset — Name(s)] | Database schema design | Decided on denormalizing resident details onto complaint documents for historical accuracy | Draft ER diagram |
-| 5 | [Date] | [All members] | Architecture and tech stack finalization | Confirmed MERN stack; layered backend structure (routes/controllers/services/models) | Set up repo, environment configs |
-| 6 | [Date] | [All members] | Sprint planning — Phase 2 (Auth) | Split auth work: backend (Name), frontend (Name) | Implement register/login/JWT by [date] |
-| 7 | [Date] | [All members] | Auth feature demo and review | Auth flow working end-to-end; fixed a bug where password was returned in API response | Move to complaint feature |
-| 8 | [Date] | [All members] | Sprint planning — Phase 3 (Complaints) | Split complaint work: service layer (Name), resident dashboard (Name) | Implement by [date] |
-| 9 | [Date] | [All members] | Complaint feature demo | Complaint submission and dashboard working; discussed overdue logic edge cases | Add server-side overdue recalculation |
-| 10 | [Date] | [All members] | Sprint planning — Phase 4 (Warden features) | Split warden work: dashboard/stats (Name), filter/sort/reorder (Name) | Implement by [date] |
-| 11 | [Date] | [All members] | Mid-semester report planning | Assigned report sections to each member | Draft sections by [date] |
-| 12 | [Date] | [All members] | Final review before mid-semester submission | Reviewed report, verified working demo, checked ZIP structure against checklist | Submit on Moodle |
-
-*(Add or remove rows to match your group's actual number of meetings.)*
