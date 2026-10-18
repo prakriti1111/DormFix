@@ -1,57 +1,53 @@
 # Contribution Record
 ## Dormfix — Hostel Complaint & Maintenance Management System
 
-**Group Number:** [Group Number]
-
----
+## 1. Individual Contribution Table
 
 ## 1. Individual Contribution Table
 
 | Member Name | Registration Number | Primary Responsibilities | Key Deliverables | Approx. Contribution % |
-|--------------|----------------------|-----------------------------|---------------------|---------------------------|
-| [Member 1 Name] | [Reg No.] | [e.g. Backend — auth, middleware, database models] | [e.g. User/Complaint/Feedback models, JWT auth, role middleware] | [e.g. 25%] |
-| [Member 2 Name] | [Reg No.] | [e.g. Backend — complaint & feedback services] | [e.g. complaintService.js, feedbackService.js, overdue logic] | [e.g. 25%] |
-| [Member 3 Name] | [Reg No.] | [e.g. Frontend — auth pages, resident dashboard] | [e.g. Login, Register, ResidentDashboard, ComplaintForm] | [e.g. 25%] |
-| [Member 4 Name] | [Reg No.] | [e.g. Frontend — warden dashboard, documentation, testing] | [e.g. WardenDashboard, test cases, SRS, this report] | [e.g. 25%] |
+|---|---|---|---|---:|
+| Prakriti Gupta | 20243209 | Backend authentication, complaint backend, requirements documentation, and demo video preparation | Authentication and login functionality, complaint backend implementation, Software Requirements Specification (SRS), and mid-semester demo video | 32% |
+| Paramita Ghosh | 20243197 | Authorization, complaint and warden interface development, project report, and project management documentation | Role-based authorization, complaint UI, warden UI, mid-semester project report, and project management documentation | 28% |
+| Naina | 20243172 | Software testing and feedback-related work | Test case preparation and execution, feedback functionality, and testing-related documentation and evidence | 30% |
+| Nishi Gupta | 20243187 | UML modelling and system design documentation | UML diagrams representing the system's structure and behaviour | 10% |
+| **Total** | — | — | — | **100%** |
 
-*Percentages should sum to 100% and reflect actual effort — including
-non-coding work such as documentation, testing, and design.*
 
 ## 2. Task-Level Breakdown
 
 | Task | Owner | Status |
-|------|--------|--------|
-| Problem statement & scope definition | [Name(s)] | Complete |
-| SRS document | [Name(s)] | Complete |
-| Use cases / user stories | [Name(s)] | Complete |
-| Architecture diagram | [Name(s)] | Complete |
-| Database design | [Name(s)] | Complete |
-| Backend: auth module | [Name(s)] | Complete |
-| Backend: complaint module | [Name(s)] | Complete |
-| Backend: feedback module | [Name(s)] | Complete |
-| Backend: dashboard/statistics module | [Name(s)] | Complete |
-| Frontend: auth pages & context | [Name(s)] | Complete |
-| Frontend: resident dashboard & complaint flow | [Name(s)] | Complete |
-| Frontend: warden dashboard | [Name(s)] | Complete |
-| Seed script | [Name(s)] | Complete |
-| Test case design | [Name(s)] | Complete |
-| Test execution & evidence collection | [Name(s)] | In progress |
-| Mid-semester report compilation | [Name(s)] | Complete |
+|---|---|---|
+| Problem statement and scope definition | All members | Complete |
+| SRS document | Prakriti Gupta | Complete |
+| Use cases and user stories | Naina | Complete |
+| Architecture diagram | Naina, Prakriti Gupta | Complete |
+| Database design | Paramita Ghosh | Complete |
+| UML diagrams | Nishi Gupta | Complete |
+| Backend: authentication module | Prakriti Gupta | Complete |
+| Backend: authorization and role-based access control | Paramita Ghosh | Complete |
+| Backend: complaint module | Naina | Complete |
+| Backend: feedback module | Naina | Complete |
+| Backend: dashboard and statistics module | Prakriti Gupta | Complete |
+| Frontend: authentication pages and context | Prakriti Gupta | Complete |
+| Frontend: resident complaint interface | Paramita Ghosh | Complete |
+| Frontend: warden interface | Naina, Paramita Ghosh | Complete |
+| Seed script | Verify actual contributor | Verify implementation status |
+| Test case design | Naina | Complete |
+| Test execution and evidence collection | Naina | Complete |
+| Mid-semester report compilation | Paramita Ghosh | Complete |
+| Project management documentation | Paramita Ghosh | Complete |
+| Demo video preparation and recording | Prakriti Gupta | Complete |
+
 
 ## 3. Git Commit Evidence
 
-Include a summary or screenshot of commit history here, for example
-the output of:
+The output of:
 
 ```bash
 git log --oneline --all --graph
 ```
 
-or a screenshot of the repository's commit graph from GitHub/GitLab,
-showing contributions from each member. Paste the summary below:
-
-```
-[Paste commit log summary or screenshot reference here]
-```
+![DormFix Git Commit History](commitLogs.png)
 
 
