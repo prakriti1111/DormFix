@@ -2,7 +2,6 @@
 
 ## DormFix: Hostel Complaint and Maintenance Management System
 
-**Group Number:** [Group Number]
 
 This file contains all seven UML diagram types for the DormFix project:
 Use Case, Class, Object, Sequence, Collaboration, State and Activity.
@@ -13,11 +12,6 @@ To view a diagram, paste the Mermaid block into https://mermaid.live or open
 this file in a Mermaid-enabled editor (GitHub, GitLab, VS Code with the
 Mermaid extension, Obsidian). Export as PNG or SVG if the report needs
 static images.
-
-> **Note on Mermaid:** Mermaid has no native Use Case, Object or Collaboration
-> diagram type. Those three are drawn with `flowchart`, using stadium shapes
-> for use cases, boxes for object instances and numbered arrows for
-> collaboration messages. The notation follows standard UML conventions.
 
 ---
 
@@ -888,25 +882,3 @@ flowchart TD
 
 ---
 
-## 9. Implementation Gaps Found During Modelling
-
-These points came up while drawing the diagrams. They are recorded here so the
-report can reflect the actual state of the code.
-
-1. **Feedback and dashboard routes are not mounted.** In `server/server.js`,
-   the lines that register `feedbackRoutes` and `dashboardRoutes` are
-   commented out. The client calls `/api/complaints/:id/feedback` and
-   `/api/dashboard/warden`, so those requests currently return a 404 from the
-   `notFound` handler. Use cases UC8, UC13 and UC14 and sequence 4.6 describe
-   the intended behaviour. Re-enabling the two `app.use(...)` lines fixes this.
-
-2. **Uploaded image can be orphaned.** Multer saves the file to disk before
-   the controller runs. If the description or profile check then fails, the
-   image remains in `server/uploads/` with no complaint referencing it.
-
-3. **Duplicate health-check route.** `/api/health` is registered twice in
-   `server.js`. This has no functional impact but should be removed.
-
-4. **Overdue flag is refreshed on read, not on a schedule.** A complaint that
-   becomes overdue is only marked when someone next reads it. The diagrams
-   model this accurately, but the report should not describe it as real-time.

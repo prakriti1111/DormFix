@@ -8,6 +8,8 @@
 
 **Project Title:** DormFix — Hostel Complaint & Maintenance Management System
 
+**Group Number:** 6
+
 **Group Members:**
 | Name | Registration Number |
 |------|------------------------|
@@ -18,6 +20,7 @@
 
 **Course Name and Section:** Software Engineering and Project Management (SEPM), Section D
 
+**Supervisor/Instructor:** Dr. Satarupa Chakrabarti
 
 ---
 
@@ -116,7 +119,7 @@ testing) without ballooning into an unmanageably large system.
 A complete requirements specification is provided in the SRS
 document. In summary:
 
-- ### Functional Requirements
+### 5.1 Functional Requirements
 
 The functional requirements define the operations and services that DormFix shall provide to its users. Each requirement is assigned a unique identifier to support traceability across system design, implementation, and testing.
 
@@ -144,7 +147,7 @@ The functional requirements define the operations and services that DormFix shal
 | FR-20 | The system shall prevent multiple feedback submissions for the same complaint. |
 | FR-21 | The system shall persist complaint and feedback records in the database. |
 
-- ### Non-Functional Requirements
+### 5.2 Non-Functional Requirements
 
 Non-functional requirements specify the quality attributes and operational constraints that DormFix must satisfy.
 
@@ -178,7 +181,18 @@ Non-functional requirements specify the quality attributes and operational const
 | NFR-09 | The backend shall separate business logic from HTTP request handling and presentation logic. |
 | NFR-10 | The backend shall follow a modular architecture that allows individual components to be maintained and modified independently. |
 
+### 5.3 Prioritisation of Requirements
 
+The requirements of DormFix are prioritised using the MoSCoW technique to distinguish essential functionality from enhancements. This helps the team allocate development effort, control project scope, and ensure that the most important user needs are addressed first.
+
+| Priority | Requirements | Justification |
+|---|---|---|
+| **Must Have** | Registration and login, authentication, role-based authorization, complaint submission, complaint history, status management, complaint ownership validation, database persistence | These functions are essential for the basic operation and security of the system. |
+| **Should Have** | Optional image upload, overdue calculation, complaint filtering and sorting, manual prioritisation, resident feedback | These functions improve complaint management, accountability, and usability. |
+| **Could Have** | Dashboard statistics, daily resolution charts, additional interface refinements | These features improve monitoring and the overall user experience. |
+| **Won't Have in This Release** | Technician assignment, notifications, native mobile application, automatic complaint classification, real-time updates | These features are outside the explicitly defined scope of the current release. |
+
+The prioritisation is intended to guide implementation and scope management. Features in the current release are implemented according to the project requirements, while excluded features may be considered for future versions.
 
 ## 6. Requirements Model
 
@@ -197,27 +211,7 @@ Dormfix follows a three-tier client-server architecture: a React
 single-page frontend, a layered Express REST API (routes →
 middleware → controllers → services → models), and a MongoDB data store. Business logic lives exclusively in the service layer, keeping controllers thin and making rules testable independent of HTTP concerns. Full diagrams are in `03_Design/Architecture_Diagram.md`.
 
-```mermaid
-flowchart TB
-    A["Resident / Warden"] --> B["React Frontend<br/>User Interface"]
-    B --> C["Express REST API<br/>Routes"]
-    C --> D["Authentication &<br/>Authorization Middleware"]
-    D --> E["Controllers"]
-    E --> F["Service Layer<br/><br/>Complaint Ownership<br/>Status Validation<br/>Feedback Eligibility<br/>Overdue Calculation<br/>Priority Management"]
-    F --> G["Mongoose Models<br/>Schema & Data Validation"]
-    G --> H[("MongoDB<br/>Persistent Data Store")]
-
-    classDef client fill:#DCEBFF,stroke:#3973AC,color:#17365D,stroke-width:1.5px
-    classDef backend fill:#E8DDFB,stroke:#7856A6,color:#38245C,stroke-width:1.5px
-    classDef service fill:#DDF3E4,stroke:#398257,color:#194D30,stroke-width:1.5px
-    classDef database fill:#FFE8CC,stroke:#C47A22,color:#704214,stroke-width:1.5px
-
-    class A,B client
-    class C,D,E backend
-    class F,G service
-    class H database
-```
-
+![](screenshots/architectureDiagram.png)
 
 #
 The layered architecture separates presentation, request handling, business logic, and data persistence. This separation improves code organization, maintainability, and testability.
@@ -334,10 +328,6 @@ A class diagram of the backend domain model, two sequence diagrams
 - Seed script for reproducible demo data
 
 ### 9.2 Features Under Development
-- Full automated test suite execution against a live test database
-  (scaffolding exists; wiring to mongodb-memory-server is in progress)
-- UI refinement for edge cases (very long descriptions, empty states
-  on first load)
 - Handling of additional interface edge cases
 - Final accessibility and responsiveness review
 
@@ -469,6 +459,14 @@ Tests include:
 - Duplicate feedback submission
 - Unauthorized feedback access
 
+![](screenshots/test1.png)
+![](screenshots/test2.png)
+![](screenshots/test3.png)
+![](screenshots/test4.png)
+![](screenshots/test5.png)
+![](screenshots/test6.png)
+![](screenshots/test7.png)
+
 A structured test case table (32 test cases across authentication,
 authorization, complaint management, overdue logic, and feedback) is
 provided in `05_Testing/Test_Cases.md`, with expected results defined
@@ -565,7 +563,7 @@ The summary of individual contributions is presented below.
 | Preventing residents from accessing each other's complaints via direct ID requests | Added an explicit ownership check in the service layer for every complaint/feedback read, independent of what the frontend shows |
 | Keeping manual reordering meaningful without letting it become de facto automatic prioritization | Implemented reordering as a simple neighbor-swap on an explicit `priorityOrder` field, only ever changed by an explicit warden action |
 | Avoiding scope creep toward features like notifications | Reaffirmed scope boundaries early via the SRS MoSCoW prioritization and referred back to it during sprint planning (see Meeting Log) |
-| [Add any additional group-specific challenge] | [Add your group's actual solution] |
+
 
 ## 14. Future Scope
 
@@ -618,7 +616,6 @@ The current implementation establishes the core complaint-management workflow an
 4. Vite Documentation — https://vitejs.dev/
 5. JSON Web Tokens Introduction — https://jwt.io/introduction
 6. MDN Web Docs, "Using the Fetch API" / REST concepts — https://developer.mozilla.org/
-7. [Add any textbook, lecture slides, or additional resource your group referenced]
 
 ---
 

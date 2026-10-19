@@ -10,40 +10,7 @@
 Paste into a Mermaid renderer (mermaid.live or similar) and export as
 PNG/PDF for the report appendix if a static image is preferred.
 
-```mermaid
-graph TD
-    subgraph Client["Client (Browser)"]
-        A[React SPA - Vite]
-        A1[Pages: Login, Register, Dashboards, Complaint Details]
-        A2[Axios API layer]
-        A3[AuthContext - JWT stored in localStorage]
-        A --> A1
-        A --> A2
-        A --> A3
-    end
-
-    subgraph Server["Application Server (Node.js / Express)"]
-        B1[Routes]
-        B2[Middleware: auth, role, upload, error handler]
-        B3[Controllers]
-        B4[Services - business logic]
-        B5[Mongoose Models]
-        B1 --> B2 --> B3 --> B4 --> B5
-    end
-
-    subgraph DB["Database"]
-        C1[(MongoDB)]
-    end
-
-    subgraph Storage["File Storage"]
-        D1[Local /uploads folder]
-    end
-
-    A2 -- "REST API (JSON / multipart, JWT bearer token)" --> B1
-    B5 -- "Mongoose ODM" --> C1
-    B4 -- "Multer" --> D1
-    D1 -- "Static file serving" --> A
-```
+![](hlad.png)
 
 ## 2. Architectural Style
 

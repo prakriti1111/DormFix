@@ -10,31 +10,9 @@
 | Resident | A hostel student who reports and tracks maintenance issues |
 | Warden | The staff member who reviews, prioritizes, and resolves complaints |
 
-## 2. Use-Case Diagram (Mermaid)
+## 2. Use-Case Diagram
 
-
-```mermaid
-graph LR
-    Resident((Resident))
-    Warden((Warden))
-
-    Resident --> UC1[Register Account]
-    Resident --> UC2[Login]
-    Resident --> UC3[Submit Complaint]
-    Resident --> UC4[View My Complaints]
-    Resident --> UC5[View Complaint Details]
-    Resident --> UC6[Submit Feedback]
-    Resident --> UC7[Logout]
-
-    Warden --> UC2
-    Warden --> UC8[View All Complaints]
-    Warden --> UC9[Filter / Sort Complaints]
-    Warden --> UC10[Reorder Priority]
-    Warden --> UC11[Update Complaint Status]
-    Warden --> UC12[View Feedback]
-    Warden --> UC13[View Dashboard Statistics]
-    Warden --> UC7
-```
+![](ucDiagram.png)
 
 ## 3. Use-Case Descriptions
 
